@@ -8,24 +8,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
-      --bg2: #f6f5f2;
-      --bg3: #edebe6;
-      --text: #1a1a18;
-      --muted: #6b6b67;
-      --border: rgba(0,0,0,0.12);
-      --border2: rgba(0,0,0,0.22);
-      --purple: #7F77DD;
-      --purple-bg: #EEEDFE;
-      --purple-text: #3C3489;
-      --teal-bg: #E1F5EE;
-      --teal-text: #085041;
-      --teal-border: #1D9E75;
-      --coral-bg: #FAECE7;
-      --coral-text: #712B13;
-      --coral-border: #D85A30;
-      --r: 10px;
-      --rl: 14px;
+      --bg: #ffffff; --bg2: #f6f5f2; --bg3: #edebe6;
+      --text: #1a1a18; --muted: #6b6b67;
+      --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
+      --purple: #7F77DD; --purple-bg: #EEEDFE; --purple-text: #3C3489;
+      --teal-bg: #E1F5EE; --teal-text: #085041; --teal-border: #1D9E75;
+      --coral-bg: #FAECE7; --coral-text: #712B13; --coral-border: #D85A30;
+      --r: 10px; --rl: 14px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -41,11 +30,8 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg3);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
+      background: var(--bg3); color: var(--text);
+      min-height: 100vh; display: flex; justify-content: center;
       padding: 1.5rem 1rem 4rem;
     }
 
@@ -61,12 +47,9 @@
 
     .screen { display: none; }
     .screen.active { display: block; }
-
     .bc { text-align: center; padding: 1.5rem 0 1rem; }
-    .bc h2 { color: var(--text); }
     .bc p { margin-top: 6px; }
 
-    /* cards */
     .card {
       background: var(--bg); border: 0.5px solid var(--border);
       border-radius: var(--rl); padding: 1.25rem 1.5rem; margin-bottom: 1rem;
@@ -76,7 +59,6 @@
       text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
     }
 
-    /* inputs */
     label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
     input[type="text"], select {
       width: 100%; height: 42px;
@@ -90,14 +72,10 @@
       background-repeat: no-repeat; background-position: right 10px center;
       padding-right: 34px; cursor: pointer;
     }
-    input:focus, select:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 3px rgba(127,119,221,0.18);
-    }
+    input:focus, select:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(127,119,221,0.18); }
     .row { display: flex; gap: 8px; }
     .row input { flex: 1; }
 
-    /* buttons */
     button {
       display: inline-flex; align-items: center; justify-content: center; gap: 6px;
       height: 42px; padding: 0 18px;
@@ -115,18 +93,14 @@
     .btn-row { display: flex; gap: 8px; margin-top: 1rem; }
     .btn-row button { flex: 1; }
 
-    /* error */
     .err { font-size: 13px; color: #b91c1c; margin-top: 8px; min-height: 18px; }
 
-    /* room badge */
     .room-code-big {
-      display: inline-block;
-      font-size: 32px; font-weight: 700; letter-spacing: 8px;
+      display: inline-block; font-size: 32px; font-weight: 700; letter-spacing: 8px;
       color: var(--purple-text); background: var(--purple-bg);
       border-radius: var(--r); padding: 10px 20px; margin: 8px 0;
     }
 
-    /* link row */
     .link-row {
       display: flex; align-items: center; gap: 8px;
       background: var(--bg2); border: 0.5px solid var(--border);
@@ -134,7 +108,6 @@
     }
     .link-url { flex: 1; font-size: 12px; color: var(--muted); word-break: break-all; }
 
-    /* player list in lobby */
     .player-row {
       display: flex; align-items: center; gap: 10px;
       padding: 8px 0; border-bottom: 0.5px solid var(--border);
@@ -142,7 +115,6 @@
     }
     .player-row:last-child { border-bottom: none; }
 
-    /* avatar */
     .avatar {
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-weight: 600; flex-shrink: 0;
@@ -150,17 +122,14 @@
     .avatar.sm { width: 32px; height: 32px; font-size: 12px; background: var(--purple-bg); color: var(--purple-text); }
     .avatar.lg { width: 44px; height: 44px; font-size: 15px; background: var(--purple-bg); color: var(--purple-text); }
 
-    /* waiting pill */
     .waiting-pill {
       text-align: center; font-size: 14px; color: var(--muted);
       background: var(--bg2); border: 0.5px solid var(--border);
       border-radius: 999px; padding: 10px 20px; margin-top: 12px;
     }
 
-    /* name cards grid (word + vote screens) */
     .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 10px; margin: 1rem 0;
     }
 
@@ -168,7 +137,7 @@
       background: var(--bg); border: 0.5px solid var(--border);
       border-radius: var(--rl); padding: 1rem 0.75rem;
       text-align: center; display: flex; flex-direction: column;
-      align-items: center; gap: 6px; position: relative;
+      align-items: center; gap: 6px;
       transition: border-color 0.15s, background 0.15s;
     }
     .name-card-label { font-size: 13px; font-weight: 500; color: var(--text); }
@@ -176,70 +145,44 @@
     .name-card.mine { border: 1.5px solid var(--purple); cursor: pointer; }
     .name-card.mine:hover { background: var(--purple-bg); }
     .name-card.mine .avatar.lg { background: var(--purple); color: white; }
-
-    .name-card.other { opacity: 0.55; }
-    .name-card.locked { cursor: not-allowed; }
-
+    .name-card.other { opacity: 0.5; }
     .name-card.seen-card { border-color: var(--teal-border); }
     .name-card.seen-card .avatar.lg { background: var(--teal-bg); color: var(--teal-text); }
 
     .seen-tick {
-      font-size: 11px; font-weight: 600;
-      color: var(--teal-text); background: var(--teal-bg);
-      border-radius: 999px; padding: 2px 8px;
+      font-size: 11px; font-weight: 600; color: var(--teal-text);
+      background: var(--teal-bg); border-radius: 999px; padding: 2px 8px;
     }
+    .tap-hint { font-size: 11px; color: var(--purple-text); }
 
-    .tap-hint { font-size: 11px; color: var(--purple-text); margin-top: 2px; }
-    .lock-badge { font-size: 16px; }
-
-    /* vote card selected */
-    .name-card.voted-for {
-      border: 2px solid var(--purple); background: var(--purple-bg);
-    }
-    .name-card.voted-for .avatar.lg { background: var(--purple); color: white; }
-    .name-card.voted-for .name-card-label { color: var(--purple-text); }
-    .name-card.dimmed { opacity: 0.35; }
-    .name-card.vote-me { opacity: 0.45; cursor: not-allowed; }
-
-    /* vote progress */
-    .vote-progress {
-      text-align: center; font-size: 14px; color: var(--muted);
-      margin: 8px 0 1rem; font-weight: 500;
-    }
-
-    /* word overlay */
     .overlay-wrap {
       position: fixed; inset: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: center;
-      padding: 1rem;
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
     }
-    .overlay-bg {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.55);
-    }
+    .overlay-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
     .overlay-card {
       position: relative; z-index: 1;
       background: var(--bg); border-radius: var(--rl);
-      padding: 2rem 1.5rem; width: 100%; max-width: 340px;
-      text-align: center;
+      padding: 2rem 1.5rem; width: 100%; max-width: 340px; text-align: center;
     }
     .overlay-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
     .overlay-word {
-      font-size: 36px; font-weight: 700; letter-spacing: -1px;
-      color: var(--text); line-height: 1.2; margin-bottom: 10px;
+      font-size: 40px; font-weight: 700; letter-spacing: -1px;
+      color: var(--text); line-height: 1.2; margin-bottom: 12px;
     }
     .overlay-word.imposter { color: #D85A30; }
-    .overlay-hint { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .overlay-hint { font-size: 14px; color: var(--muted); line-height: 1.5; }
 
-    /* result */
+    .seen-progress { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+
     .result-banner {
       border-radius: var(--rl); padding: 2rem 1.5rem;
       text-align: center; margin-bottom: 1rem;
     }
     .result-banner.caught { background: var(--teal-bg); border: 0.5px solid var(--teal-border); }
     .result-banner.escaped { background: var(--coral-bg); border: 0.5px solid var(--coral-border); }
-    .result-icon { font-size: 48px; margin-bottom: 10px; }
-    .result-h { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .result-icon { font-size: 52px; margin-bottom: 10px; }
+    .result-h { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
     .caught .result-h { color: var(--teal-text); }
     .escaped .result-h { color: var(--coral-text); }
     .result-p { font-size: 14px; line-height: 1.6; }
@@ -256,25 +199,18 @@
     .wrc-name { font-size: 12px; font-weight: 600; }
     .wrc-word { font-size: 11px; margin-top: 3px; opacity: 0.85; }
 
-    .seen-progress { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
-
-    footer { text-align: center; margin-top: 2rem; font-size: 12px; color: var(--muted); }
-
-    .or-divider {
-      text-align: center; font-size: 13px; color: var(--muted);
-      margin: 1.25rem 0; position: relative;
-    }
-    .or-divider::before, .or-divider::after {
-      content: ''; position: absolute; top: 50%; width: 42%; height: 0.5px;
-      background: var(--border2);
-    }
-    .or-divider::before { left: 0; }
-    .or-divider::after { right: 0; }
-
     .discuss-big { text-align: center; padding: 3rem 0 1.5rem; }
     .discuss-big .icon { font-size: 64px; margin-bottom: 1rem; }
 
-    .host-only { display: none; }
+    .or-divider {
+      text-align: center; font-size: 13px; color: var(--muted); margin: 1.25rem 0; position: relative;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; position: absolute; top: 50%; width: 42%; height: 0.5px; background: var(--border2);
+    }
+    .or-divider::before { left: 0; } .or-divider::after { right: 0; }
+
+    footer { text-align: center; margin-top: 2rem; font-size: 12px; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -285,11 +221,9 @@
     <p>one word · one imposter · find them</p>
   </div>
 
-  <!-- ══ HOME ══ -->
+  <!-- HOME -->
   <div id="s-home" class="screen active">
-    <button class="btn-primary btn-full" style="height:52px;font-size:16px" onclick="createRoom()">
-      create a room
-    </button>
+    <button class="btn-primary btn-full" style="height:52px;font-size:16px" onclick="createRoom()">create a room</button>
     <div class="or-divider">or join with a code</div>
     <div class="row">
       <input type="text" id="join-code" placeholder="room code" maxlength="4"
@@ -299,12 +233,12 @@
     <p class="err" id="home-err"></p>
   </div>
 
-  <!-- ══ NAME ENTRY ══ -->
+  <!-- NAME ENTRY -->
   <div id="s-name" class="screen">
     <div class="bc">
       <h2>joining room</h2>
       <div class="room-code-big" id="name-room-display"></div>
-      <p>enter your name to join the lobby</p>
+      <p>enter your name to join</p>
     </div>
     <div class="row" style="margin-top:1rem">
       <input type="text" id="name-input" placeholder="your name" maxlength="20" autocomplete="off" />
@@ -313,7 +247,7 @@
     <p class="err" id="name-err"></p>
   </div>
 
-  <!-- ══ LOBBY ══ -->
+  <!-- LOBBY -->
   <div id="s-lobby" class="screen">
     <div class="bc">
       <p>room code</p>
@@ -326,7 +260,7 @@
     </div>
 
     <div class="card" id="host-setup" style="display:none">
-      <div class="card-title">word pair</div>
+      <div class="card-title">word pair for this round</div>
       <select id="pair-select">
         <option value="pizza|burger">Pizza vs Burger</option>
         <option value="beach|swimming pool">Beach vs Swimming Pool</option>
@@ -342,8 +276,8 @@
     </div>
 
     <div class="card">
-      <div class="card-title">players <span id="lobby-count"></span></div>
-      <div id="lobby-players"><p style="color:var(--muted);font-size:14px">waiting for players...</p></div>
+      <div class="card-title">players joined <span id="lobby-count"></span></div>
+      <div id="lobby-players"><p style="color:var(--muted);font-size:14px">waiting for players to join...</p></div>
     </div>
 
     <button class="btn-primary btn-full" id="start-btn" onclick="startGame()" style="display:none" disabled>
@@ -352,19 +286,19 @@
     <div class="waiting-pill" id="guest-wait" style="display:none">waiting for host to start the game...</div>
   </div>
 
-  <!-- ══ WORD SCREEN ══ -->
+  <!-- WORD SCREEN -->
   <div id="s-word" class="screen">
     <div class="bc">
-      <h2>Round 1 — see your word</h2>
-      <p>tap your name card to see your secret word privately</p>
+      <h2>tap your name to see your word</h2>
+      <p>your word is private — don't show anyone!</p>
     </div>
     <div class="card-grid" id="word-cards"></div>
-
     <div class="seen-progress" id="seen-progress"></div>
-    <button class="btn-primary btn-full" id="word-continue-btn" onclick="hostAdvance('discuss')" style="display:none">
-      everyone's ready → continue
+
+    <button class="btn-primary btn-full" id="word-reveal-btn" onclick="hostAdvance('reveal')" style="display:none">
+      everyone has discussed → reveal the imposter
     </button>
-    <div class="waiting-pill" id="word-guest-wait" style="display:none">waiting for host to continue...</div>
+    <div class="waiting-pill" id="word-guest-wait" style="display:none">discuss on the call · host will reveal the imposter when ready</div>
 
     <!-- word overlay -->
     <div class="overlay-wrap" id="word-overlay" style="display:none">
@@ -378,38 +312,7 @@
     </div>
   </div>
 
-  <!-- ══ DISCUSS SCREEN ══ -->
-  <div id="s-discuss" class="screen">
-    <div class="discuss-big">
-      <div class="icon">🗣️</div>
-      <h2>give your clues!</h2>
-      <p style="margin-top:8px;max-width:320px;margin-left:auto;margin-right:auto">
-        go around — each person gives one clue about their word on the call.<br>
-        <strong style="color:var(--text)">don't say the word itself!</strong>
-      </p>
-    </div>
-    <button class="btn-primary btn-full" id="discuss-continue-btn" onclick="hostAdvance('vote')" style="display:none">
-      everyone gave a clue → continue to vote
-    </button>
-    <div class="waiting-pill" id="discuss-guest-wait" style="display:none">waiting for host to start voting...</div>
-  </div>
-
-  <!-- ══ VOTE SCREEN ══ -->
-  <div id="s-vote" class="screen">
-    <div class="bc">
-      <h2>who's the imposter?</h2>
-      <p>tap the person you think has a different word</p>
-    </div>
-    <div class="card-grid" id="vote-cards"></div>
-    <div class="vote-progress" id="vote-progress"></div>
-    <p class="err" id="vote-err"></p>
-    <button class="btn-primary btn-full" id="reveal-btn" onclick="hostAdvance('reveal')" style="display:none" disabled>
-      reveal the imposter
-    </button>
-    <div class="waiting-pill" id="vote-guest-wait" style="display:none">waiting for host to reveal...</div>
-  </div>
-
-  <!-- ══ REVEAL SCREEN ══ -->
+  <!-- REVEAL SCREEN -->
   <div id="s-reveal" class="screen">
     <div id="reveal-content"></div>
     <div class="btn-row">
@@ -421,14 +324,10 @@
   <footer>QA Imposter · open on any device · no app needed</footer>
 </div>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-  // ══════════════════════════════════════════
-  // REPLACE THIS WITH YOUR FIREBASE CONFIG
-  // ══════════════════════════════════════════
   const firebaseConfig = {
     apiKey: "AIzaSyC7WRXxLiSqWKuAIyUryThDHAhTACnUyFc",
     authDomain: "qa-imposter.firebaseapp.com",
@@ -439,7 +338,6 @@
     appId: "1:242195247753:web:7628b5d117a4a07d4e0c58",
     measurementId: "G-TTJYFTHG1F"
   };
-  // ══════════════════════════════════════════
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
@@ -457,394 +355,249 @@
     'library|bookshop':           { main: 'Library',       imp: 'Bookshop' },
   };
 
-  let roomCode = null;
-  let myName   = null;
-  let myKey    = null;
-  let isHost   = false;
-  let gameRef  = null;
-  let lastStatus = null;
+  let roomCode = null, myName = null, myKey = null, isHost = false;
+  let gameRef = null, lastStatus = null;
 
-  // ── utils ──
-  function toKey(name) { return name.toLowerCase().replace(/[^a-z0-9]/g, '_'); }
-
-  function initials(name) {
-    return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
-  }
-
-  function genCode() {
-    const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
-    return Array.from({length:4}, () => c[Math.floor(Math.random()*c.length)]).join('');
-  }
-
-  function show(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0, 0);
-  }
-
-  function setErr(id, msg) { const e = document.getElementById(id); if(e) e.textContent = msg; }
-  function clrErr(id)      { const e = document.getElementById(id); if(e) e.textContent = ''; }
-
-  function sortedPlayers(players) {
-    return Object.values(players || {}).sort((a,b) => (a.joinedAt||0)-(b.joinedAt||0));
-  }
+  function toKey(n) { return n.toLowerCase().replace(/[^a-z0-9]/g,'_'); }
+  function initials(n) { return n.trim().split(/\s+/).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+  function genCode() { const c='ABCDEFGHJKLMNPQRSTUVWXYZ'; return Array.from({length:4},()=>c[Math.floor(Math.random()*c.length)]).join(''); }
+  function show(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+  function setErr(id,msg) { const e=document.getElementById(id); if(e) e.textContent=msg; }
+  function clrErr(id) { const e=document.getElementById(id); if(e) e.textContent=''; }
+  function sorted(players) { return Object.values(players||{}).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
+  function ls(k,v) { if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
 
   // ── HOME ──
   function createRoom() {
-    roomCode = genCode();
-    isHost   = true;
-    ls('qi_room', roomCode); ls('qi_host', 'true');
-    document.getElementById('name-room-display').textContent = roomCode;
+    roomCode=genCode(); isHost=true;
+    ls('qi_room',roomCode); ls('qi_host','true');
+    document.getElementById('name-room-display').textContent=roomCode;
     show('s-name');
   }
 
   function joinRoom() {
-    const code = document.getElementById('join-code').value.trim().toUpperCase();
-    if (code.length !== 4) { setErr('home-err', 'enter a 4-letter room code'); return; }
-    db.ref(`rooms/${code}`).once('value').then(snap => {
-      if (!snap.exists()) { setErr('home-err', 'room not found — check the code'); return; }
-      roomCode = code; isHost = false;
-      ls('qi_room', code); ls('qi_host', 'false');
-      document.getElementById('name-room-display').textContent = code;
+    const code=document.getElementById('join-code').value.trim().toUpperCase();
+    if(code.length!==4){setErr('home-err','enter a 4-letter room code');return;}
+    db.ref(`rooms/${code}`).once('value').then(snap=>{
+      if(!snap.exists()){setErr('home-err','room not found');return;}
+      roomCode=code; isHost=false;
+      ls('qi_room',code); ls('qi_host','false');
+      document.getElementById('name-room-display').textContent=code;
       show('s-name');
     });
   }
 
-  document.getElementById('join-code').addEventListener('input', function() {
-    this.value = this.value.toUpperCase();
-  });
-  document.getElementById('join-code').addEventListener('keydown', e => { if(e.key==='Enter') joinRoom(); });
+  document.getElementById('join-code').addEventListener('input',function(){this.value=this.value.toUpperCase();});
+  document.getElementById('join-code').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom();});
+  document.getElementById('name-input').addEventListener('keydown',e=>{if(e.key==='Enter')joinLobby();});
 
-  // ── NAME ENTRY ──
+  // ── JOIN LOBBY ──
   function joinLobby() {
-    const name = document.getElementById('name-input').value.trim();
-    if (!name) { setErr('name-err', 'enter your name'); return; }
-    const key = toKey(name);
-
-    db.ref(`rooms/${roomCode}/players/${key}`).once('value').then(snap => {
-      if (snap.exists()) { setErr('name-err', 'name taken — try a different one'); return; }
-      myName = name; myKey = key;
-      ls('qi_name', name); ls('qi_key', key);
-
-      const writes = {};
-      writes[`rooms/${roomCode}/players/${key}`] = {
-        displayName: name, seenWord: false, vote: null,
-        joinedAt: firebase.database.ServerValue.TIMESTAMP
-      };
-      if (isHost) {
-        writes[`rooms/${roomCode}/status`]    = 'lobby';
-        writes[`rooms/${roomCode}/hostKey`]   = key;
-        writes[`rooms/${roomCode}/createdAt`] = firebase.database.ServerValue.TIMESTAMP;
-      }
-      db.ref().update(writes).then(() => { attachListener(); });
+    const name=document.getElementById('name-input').value.trim();
+    if(!name){setErr('name-err','enter your name');return;}
+    const key=toKey(name);
+    db.ref(`rooms/${roomCode}/players/${key}`).once('value').then(snap=>{
+      if(snap.exists()){setErr('name-err','name taken — try a different one');return;}
+      myName=name; myKey=key;
+      ls('qi_name',name); ls('qi_key',key);
+      const writes={};
+      writes[`rooms/${roomCode}/players/${key}`]={displayName:name,seenWord:false,joinedAt:firebase.database.ServerValue.TIMESTAMP};
+      if(isHost){writes[`rooms/${roomCode}/status`]='lobby';writes[`rooms/${roomCode}/hostKey`]=key;writes[`rooms/${roomCode}/createdAt`]=firebase.database.ServerValue.TIMESTAMP;}
+      db.ref().update(writes).then(()=>attachListener());
     });
   }
 
-  document.getElementById('name-input').addEventListener('keydown', e => { if(e.key==='Enter') joinLobby(); });
-
-  // ── LOBBY render ──
+  // ── LOBBY ──
   function renderLobby(data) {
-    const players = sortedPlayers(data.players);
-    const count   = players.length;
-    const link    = `${location.origin}${location.pathname}#${roomCode}`;
-
-    document.getElementById('lobby-code').textContent = roomCode;
-    document.getElementById('lobby-link').textContent = link;
-    document.getElementById('lobby-count').textContent = `(${count})`;
-    document.getElementById('lobby-players').innerHTML = players.length
-      ? players.map(p => `
-          <div class="player-row">
-            <div class="avatar sm">${initials(p.displayName)}</div>
-            <span>${p.displayName}</span>
-          </div>`).join('')
+    const players=sorted(data.players); const count=players.length;
+    const link=`${location.origin}${location.pathname}#${roomCode}`;
+    document.getElementById('lobby-code').textContent=roomCode;
+    document.getElementById('lobby-link').textContent=link;
+    document.getElementById('lobby-count').textContent=`(${count})`;
+    document.getElementById('lobby-players').innerHTML=players.length
+      ? players.map(p=>`<div class="player-row"><div class="avatar sm">${initials(p.displayName)}</div><span>${p.displayName}</span></div>`).join('')
       : '<p style="color:var(--muted);font-size:14px">no one yet...</p>';
-
-    if (isHost) {
-      document.getElementById('host-setup').style.display = 'block';
-      document.getElementById('guest-wait').style.display = 'none';
-      const btn = document.getElementById('start-btn');
-      btn.style.display = 'block';
-      btn.disabled = count < 3;
-      btn.textContent = count < 3
-        ? `waiting for players (${count} joined, need 3+)`
-        : `start game — ${count} players`;
+    if(isHost){
+      document.getElementById('host-setup').style.display='block';
+      document.getElementById('guest-wait').style.display='none';
+      const btn=document.getElementById('start-btn');
+      btn.style.display='block';
+      btn.disabled=count<3;
+      btn.textContent=count<3?`waiting for players (${count} joined, need 3+)`:`start game — ${count} players`;
     } else {
-      document.getElementById('host-setup').style.display = 'none';
-      document.getElementById('guest-wait').style.display = 'block';
-      document.getElementById('start-btn').style.display = 'none';
+      document.getElementById('host-setup').style.display='none';
+      document.getElementById('guest-wait').style.display='block';
+      document.getElementById('start-btn').style.display='none';
     }
-
     show('s-lobby');
   }
 
   function copyLink() {
-    const link = `${location.origin}${location.pathname}#${roomCode}`;
-    navigator.clipboard.writeText(link).catch(() => {});
+    const link=`${location.origin}${location.pathname}#${roomCode}`;
+    navigator.clipboard.writeText(link).catch(()=>{});
   }
 
   // ── START GAME ──
   function startGame() {
-    const pairKey = document.getElementById('pair-select').value;
-    const pair    = PAIRS[pairKey];
-
-    db.ref(`rooms/${roomCode}/players`).once('value').then(snap => {
-      const players = snap.val() || {};
-      const keys    = Object.keys(players);
-      const impIdx  = Math.floor(Math.random() * keys.length);
-      const impKey  = keys[impIdx];
-
-      const updates = {};
-      keys.forEach(k => {
-        updates[`rooms/${roomCode}/players/${k}/word`]     = (k === impKey) ? pair.imp : pair.main;
-        updates[`rooms/${roomCode}/players/${k}/seenWord`] = false;
-        updates[`rooms/${roomCode}/players/${k}/vote`]     = null;
+    const pairKey=document.getElementById('pair-select').value;
+    const pair=PAIRS[pairKey];
+    db.ref(`rooms/${roomCode}/players`).once('value').then(snap=>{
+      const players=snap.val()||{};
+      const keys=Object.keys(players);
+      const impKey=keys[Math.floor(Math.random()*keys.length)];
+      const updates={};
+      keys.forEach(k=>{
+        updates[`rooms/${roomCode}/players/${k}/word`]=(k===impKey)?pair.imp:pair.main;
+        updates[`rooms/${roomCode}/players/${k}/seenWord`]=false;
       });
-      updates[`rooms/${roomCode}/status`]   = 'word';
-      updates[`rooms/${roomCode}/mainWord`] = pair.main;
-      updates[`rooms/${roomCode}/impWord`]  = pair.imp;
-      updates[`rooms/${roomCode}/impName`]  = players[impKey].displayName;
-      updates[`rooms/${roomCode}/impKey`]   = impKey;
-
+      updates[`rooms/${roomCode}/status`]='word';
+      updates[`rooms/${roomCode}/mainWord`]=pair.main;
+      updates[`rooms/${roomCode}/impWord`]=pair.imp;
+      updates[`rooms/${roomCode}/impName`]=players[impKey].displayName;
+      updates[`rooms/${roomCode}/impKey`]=impKey;
       db.ref().update(updates);
     });
   }
 
   // ── WORD SCREEN ──
   function renderWordScreen(data) {
-    const players   = sortedPlayers(data.players);
-    const seenCount = players.filter(p => p.seenWord).length;
-    const total     = players.length;
+    const players=sorted(data.players);
+    const seenCount=players.filter(p=>p.seenWord).length;
+    const total=players.length;
 
-    document.getElementById('word-cards').innerHTML = players.map(p => {
-      const key  = toKey(p.displayName);
-      const isMe = key === myKey;
-      const seen = p.seenWord;
-      if (isMe) {
-        return `<div class="name-card mine ${seen ? 'seen-card' : ''}" onclick="${!seen ? 'revealWord()' : ''}">
-          <div class="avatar lg">${initials(p.displayName)}</div>
-          <div class="name-card-label">${p.displayName}</div>
-          ${seen ? '<div class="seen-tick">seen ✓</div>' : '<div class="tap-hint">tap me</div>'}
-        </div>`;
-      } else {
-        return `<div class="name-card other locked">
-          <div class="avatar lg">${initials(p.displayName)}</div>
-          <div class="name-card-label">${p.displayName}</div>
-          ${seen ? '<div class="seen-tick">seen ✓</div>' : '<div class="lock-badge">🔒</div>'}
-        </div>`;
-      }
+    document.getElementById('word-cards').innerHTML=players.map(p=>{
+      const key=toKey(p.displayName);
+      const isMe=key===myKey;
+      const seen=p.seenWord;
+      if(isMe) return `<div class="name-card mine ${seen?'seen-card':''}" onclick="${!seen?'revealWord()':''}">
+        <div class="avatar lg">${initials(p.displayName)}</div>
+        <div class="name-card-label">${p.displayName}</div>
+        ${seen?'<div class="seen-tick">seen ✓</div>':'<div class="tap-hint">tap me</div>'}
+      </div>`;
+      return `<div class="name-card other">
+        <div class="avatar lg">${initials(p.displayName)}</div>
+        <div class="name-card-label">${p.displayName}</div>
+        ${seen?'<div class="seen-tick">seen ✓</div>':'<div style="font-size:16px">🔒</div>'}
+      </div>`;
     }).join('');
 
-    document.getElementById('seen-progress').textContent = `${seenCount} of ${total} have seen their word`;
+    document.getElementById('seen-progress').textContent=`${seenCount} of ${total} have seen their word`;
 
-    if (isHost) {
-      document.getElementById('word-continue-btn').style.display = 'block';
-      document.getElementById('word-guest-wait').style.display   = 'none';
+    if(isHost){
+      document.getElementById('word-reveal-btn').style.display='block';
+      document.getElementById('word-guest-wait').style.display='none';
     } else {
-      document.getElementById('word-continue-btn').style.display = 'none';
-      document.getElementById('word-guest-wait').style.display   = 'block';
+      document.getElementById('word-reveal-btn').style.display='none';
+      document.getElementById('word-guest-wait').style.display='block';
     }
   }
 
   function revealWord() {
-    db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap => {
-      const player = snap.val();
-      if (!player) return;
-      db.ref(`rooms/${roomCode}/impKey`).once('value').then(impSnap => {
-        const amImposter = impSnap.val() === myKey;
-        const wordEl = document.getElementById('overlay-word');
-        wordEl.textContent = player.word;
-        wordEl.className   = 'overlay-word' + (amImposter ? ' imposter' : '');
-        document.getElementById('overlay-hint').textContent = amImposter
-          ? '😈 you are the imposter — blend in with a confident clue!'
-          : '✅ you are a regular player — give a clue without saying the word';
-        document.getElementById('word-overlay').style.display = 'flex';
+    db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap=>{
+      const player=snap.val(); if(!player) return;
+      db.ref(`rooms/${roomCode}/impKey`).once('value').then(impSnap=>{
+        const amImposter=impSnap.val()===myKey;
+        const wordEl=document.getElementById('overlay-word');
+        wordEl.textContent=player.word;
+        wordEl.className='overlay-word'+(amImposter?' imposter':'');
+        document.getElementById('overlay-hint').textContent=amImposter
+          ?'😈 you are the imposter — blend in with a confident clue!'
+          :'✅ you are a regular player — give a clue without saying the word';
+        document.getElementById('word-overlay').style.display='flex';
         db.ref(`rooms/${roomCode}/players/${myKey}/seenWord`).set(true);
       });
     });
   }
 
-  function closeOverlay() {
-    document.getElementById('word-overlay').style.display = 'none';
-  }
+  function closeOverlay() { document.getElementById('word-overlay').style.display='none'; }
 
-  // ── VOTE SCREEN ──
-  function renderVoteScreen(data) {
-    const players    = sortedPlayers(data.players);
-    const total      = players.length;
-    const votedCount = players.filter(p => p.vote).length;
-    const myPlayer   = data.players?.[myKey];
-    const myVote     = myPlayer?.vote;
-
-    document.getElementById('vote-cards').innerHTML = players.map(p => {
-      const key  = toKey(p.displayName);
-      const isMe = key === myKey;
-      let cls    = 'name-card';
-      if (isMe)                          cls += ' vote-me';
-      else if (myVote === p.displayName) cls += ' voted-for';
-      else if (myVote)                   cls += ' dimmed';
-      const clickable = !myVote && !isMe;
-      return `<div class="${cls}" onclick="${clickable ? `castVote('${p.displayName.replace(/'/g,"\\'")}')` : ''}">
-        <div class="avatar lg">${initials(p.displayName)}</div>
-        <div class="name-card-label">${p.displayName}</div>
-        ${p.vote ? '<div class="seen-tick">voted ✓</div>' : ''}
-      </div>`;
-    }).join('');
-
-    document.getElementById('vote-progress').textContent = `${votedCount} of ${total} voted`;
-
-    if (isHost) {
-      const btn = document.getElementById('reveal-btn');
-      btn.style.display = 'block';
-      document.getElementById('vote-guest-wait').style.display = 'none';
-      btn.disabled    = votedCount < total;
-      btn.textContent = votedCount < total
-        ? `waiting for everyone to vote (${votedCount}/${total})`
-        : 'reveal the imposter';
-    } else {
-      document.getElementById('reveal-btn').style.display    = 'none';
-      document.getElementById('vote-guest-wait').style.display = 'block';
-    }
-
-    clrErr('vote-err');
-  }
-
-  function castVote(targetName) {
-    db.ref(`rooms/${roomCode}/players/${myKey}/vote`).once('value').then(snap => {
-      if (snap.val()) return;
-      db.ref(`rooms/${roomCode}/players/${myKey}/vote`).set(targetName);
-    });
-  }
+  // ── HOST ADVANCE ──
+  function hostAdvance(nextStatus) { db.ref(`rooms/${roomCode}/status`).set(nextStatus); }
 
   // ── REVEAL SCREEN ──
   function renderReveal(data) {
-    const players = sortedPlayers(data.players);
-    const votes   = {};
-    players.forEach(p => { if (p.vote) votes[p.vote] = (votes[p.vote]||0)+1; });
-    const topVoted = Object.entries(votes).sort((a,b) => b[1]-a[1])[0];
-    const caught   = topVoted && topVoted[0] === data.impName;
-
-    const wordChips = players.map(p => {
-      const isImp = toKey(p.displayName) === data.impKey;
-      return `<div class="wrc ${isImp ? 'imposter' : 'regular'}">
+    const players=sorted(data.players);
+    const wordChips=players.map(p=>{
+      const isImp=toKey(p.displayName)===data.impKey;
+      return `<div class="wrc ${isImp?'imposter':'regular'}">
         <div class="wrc-name">${p.displayName}</div>
-        <div class="wrc-word">${isImp ? data.impWord : data.mainWord}</div>
+        <div class="wrc-word">${isImp?data.impWord:data.mainWord}</div>
       </div>`;
     }).join('');
 
-    const voteRows = Object.entries(votes).sort((a,b)=>b[1]-a[1]).map(([name, count]) =>
-      `<div class="player-row">
-        <div class="avatar sm">${initials(name)}</div>
-        <span style="flex:1">${name}</span>
-        <span style="font-size:13px;color:var(--muted)">${count} vote${count>1?'s':''}</span>
-      </div>`
-    ).join('');
-
-    document.getElementById('reveal-content').innerHTML = `
-      <div class="result-banner ${caught ? 'caught' : 'escaped'}">
-        <div class="result-icon">${caught ? '🎉' : '😈'}</div>
-        <div class="result-h">${caught ? 'imposter caught!' : 'imposter escaped!'}</div>
-        <div class="result-p">${caught
-          ? `<strong>${data.impName}</strong> was the imposter.<br>Their word was "<strong>${data.impWord}</strong>" while everyone else had "<strong>${data.mainWord}</strong>".`
-          : `<strong>${data.impName}</strong> fooled everyone! Their word was "<strong>${data.impWord}</strong>".<br>The group voted for <strong>${topVoted?.[0] || '?'}</strong> instead.`
-        }</div>
+    document.getElementById('reveal-content').innerHTML=`
+      <div class="result-banner escaped" style="background:var(--coral-bg);border-color:var(--coral-border)">
+        <div class="result-icon">😈</div>
+        <div class="result-h" style="color:var(--coral-text)">the imposter was...</div>
+        <div style="font-size:32px;font-weight:700;color:var(--coral-text);margin:8px 0">${data.impName}</div>
+        <div class="result-p" style="color:var(--coral-text)">Their word was "<strong>${data.impWord}</strong>" while everyone else had "<strong>${data.mainWord}</strong>"</div>
       </div>
       <div class="card">
         <div class="card-title">everyone's words</div>
         <div class="word-reveal-grid">${wordChips}</div>
-      </div>
-      <div class="card">
-        <div class="card-title">votes cast</div>
-        ${voteRows || '<p style="color:var(--muted);font-size:14px">no votes recorded</p>'}
       </div>`;
 
-    if (isHost) {
-      document.getElementById('play-again-btn').style.display     = 'block';
-      document.getElementById('reveal-guest-wait').style.display  = 'none';
+    if(isHost){
+      document.getElementById('play-again-btn').style.display='block';
+      document.getElementById('reveal-guest-wait').style.display='none';
     } else {
-      document.getElementById('play-again-btn').style.display     = 'none';
-      document.getElementById('reveal-guest-wait').style.display  = 'block';
+      document.getElementById('play-again-btn').style.display='none';
+      document.getElementById('reveal-guest-wait').style.display='block';
     }
   }
 
   // ── PLAY AGAIN ──
   function playAgain() {
-    db.ref(`rooms/${roomCode}/players`).once('value').then(snap => {
-      const players = snap.val() || {};
-      const updates = {};
-      Object.keys(players).forEach(k => {
-        updates[`rooms/${roomCode}/players/${k}/seenWord`] = false;
-        updates[`rooms/${roomCode}/players/${k}/vote`]     = null;
-        updates[`rooms/${roomCode}/players/${k}/word`]     = null;
+    db.ref(`rooms/${roomCode}/players`).once('value').then(snap=>{
+      const players=snap.val()||{};
+      const updates={};
+      Object.keys(players).forEach(k=>{
+        updates[`rooms/${roomCode}/players/${k}/seenWord`]=false;
+        updates[`rooms/${roomCode}/players/${k}/word`]=null;
       });
-      updates[`rooms/${roomCode}/status`]   = 'lobby';
-      updates[`rooms/${roomCode}/mainWord`] = null;
-      updates[`rooms/${roomCode}/impWord`]  = null;
-      updates[`rooms/${roomCode}/impName`]  = null;
-      updates[`rooms/${roomCode}/impKey`]   = null;
+      updates[`rooms/${roomCode}/status`]='lobby';
+      updates[`rooms/${roomCode}/mainWord`]=null;
+      updates[`rooms/${roomCode}/impWord`]=null;
+      updates[`rooms/${roomCode}/impName`]=null;
+      updates[`rooms/${roomCode}/impKey`]=null;
       db.ref().update(updates);
     });
   }
 
-  // ── HOST ADVANCE ──
-  function hostAdvance(nextStatus) {
-    db.ref(`rooms/${roomCode}/status`).set(nextStatus);
-  }
-
   // ── REAL-TIME LISTENER ──
   function attachListener() {
-    if (gameRef) gameRef.off();
-    gameRef = db.ref(`rooms/${roomCode}`);
-    gameRef.on('value', snap => {
-      const data = snap.val();
-      if (!data) return;
-      const status = data.status;
-
-      if (status !== lastStatus) {
-        lastStatus = status;
-        switch (status) {
-          case 'lobby':   renderLobby(data);       break;
-          case 'word':    show('s-word');           break;
-          case 'discuss':
-            show('s-discuss');
-            document.getElementById('discuss-continue-btn').style.display = isHost ? 'block' : 'none';
-            document.getElementById('discuss-guest-wait').style.display   = isHost ? 'none'  : 'block';
-            break;
-          case 'reveal':  show('s-reveal'); renderReveal(data); break;
-        }
+    if(gameRef) gameRef.off();
+    gameRef=db.ref(`rooms/${roomCode}`);
+    gameRef.on('value',snap=>{
+      const data=snap.val(); if(!data) return;
+      const status=data.status;
+      switch(status){
+        case 'lobby':  renderLobby(data); break;
+        case 'word':   show('s-word'); renderWordScreen(data); break;
+        case 'reveal': show('s-reveal'); renderReveal(data); break;
       }
-
-      if (status === 'lobby')  renderLobby(data);
-      if (status === 'word')   renderWordScreen(data);
-      if (status === 'vote')   { show('s-vote'); renderVoteScreen(data); }
     });
   }
 
-  // ── SESSION RESTORE / URL HASH JOIN ──
-  window.addEventListener('load', () => {
-    const hash = location.hash.slice(1).toUpperCase();
-    const savedRoom = ls('qi_room');
-    const savedName = ls('qi_name');
-    const savedKey  = ls('qi_key');
-    const savedHost = ls('qi_host');
+  // ── SESSION RESTORE / URL HASH ──
+  window.addEventListener('load',()=>{
+    const hash=location.hash.slice(1).toUpperCase();
+    const savedRoom=ls('qi_room'), savedName=ls('qi_name');
+    const savedKey=ls('qi_key'), savedHost=ls('qi_host');
 
-    if (hash && /^[A-Z]{4}$/.test(hash)) {
-      roomCode = hash; isHost = false;
-      ls('qi_room', hash); ls('qi_host', 'false');
-      document.getElementById('name-room-display').textContent = hash;
+    if(hash && /^[A-Z]{4}$/.test(hash)){
+      roomCode=hash; isHost=false;
+      ls('qi_room',hash); ls('qi_host','false');
+      document.getElementById('name-room-display').textContent=hash;
       show('s-name');
-    } else if (savedRoom && savedName && savedKey) {
-      roomCode = savedRoom; myName = savedName;
-      myKey = savedKey; isHost = savedHost === 'true';
-      db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap => {
-        if (snap.exists()) { attachListener(); }
-        else { clearSession(); show('s-home'); }
+    } else if(savedRoom && savedName && savedKey){
+      roomCode=savedRoom; myName=savedName; myKey=savedKey; isHost=savedHost==='true';
+      db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap=>{
+        if(snap.exists()) attachListener();
+        else { ['qi_room','qi_name','qi_key','qi_host'].forEach(k=>localStorage.removeItem(k)); show('s-home'); }
       });
     }
   });
-
-  // ── LOCAL STORAGE helpers ──
-  function ls(k, v) { if (v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
-  function clearSession() { ['qi_room','qi_name','qi_key','qi_host'].forEach(k => localStorage.removeItem(k)); }
 </script>
 </body>
 </html>
