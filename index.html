@@ -13,38 +13,29 @@
       --bg3: #edebe6;
       --text: #1a1a18;
       --muted: #6b6b67;
-      --border: rgba(0,0,0,0.13);
+      --border: rgba(0,0,0,0.12);
       --border2: rgba(0,0,0,0.22);
       --purple: #7F77DD;
       --purple-bg: #EEEDFE;
       --purple-text: #3C3489;
       --teal-bg: #E1F5EE;
       --teal-text: #085041;
-      --teal-mid: #1D9E75;
+      --teal-border: #1D9E75;
       --coral-bg: #FAECE7;
       --coral-text: #712B13;
-      --coral-mid: #D85A30;
+      --coral-border: #D85A30;
       --r: 10px;
       --rl: 14px;
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #181816;
-        --bg2: #222220;
-        --bg3: #2a2a27;
-        --text: #f0ede8;
-        --muted: #9a9994;
-        --border: rgba(255,255,255,0.1);
-        --border2: rgba(255,255,255,0.2);
-        --purple-bg: #26215C;
-        --purple-text: #CECBF6;
-        --teal-bg: #04342C;
-        --teal-text: #9FE1CB;
-        --teal-mid: #1D9E75;
-        --coral-bg: #4A1B0C;
-        --coral-text: #F5C4B3;
-        --coral-mid: #D85A30;
+        --bg: #181816; --bg2: #222220; --bg3: #2a2a27;
+        --text: #f0ede8; --muted: #9a9994;
+        --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
+        --purple-bg: #26215C; --purple-text: #CECBF6;
+        --teal-bg: #04342C; --teal-text: #9FE1CB; --teal-border: #1D9E75;
+        --coral-bg: #4A1B0C; --coral-text: #F5C4B3; --coral-border: #D85A30;
       }
     }
 
@@ -60,204 +51,230 @@
 
     .wrap { width: 100%; max-width: 480px; }
 
-    /* ── typography ── */
     h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
-    h2 { font-size: 20px; font-weight: 600; }
+    h2 { font-size: 20px; font-weight: 600; color: var(--text); }
     p  { font-size: 14px; line-height: 1.6; color: var(--muted); }
 
     .logo { text-align: center; padding: 2rem 0 1.5rem; }
     .logo h1 { color: var(--text); }
-    .logo p  { margin-top: 4px; }
+    .logo p { margin-top: 4px; }
 
-    /* ── cards ── */
-    .card {
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-radius: var(--rl);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .card-title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
-
-    /* ── form ── */
-    label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
-    input[type="text"], select {
-      width: 100%; height: 42px;
-      border: 0.5px solid var(--border2);
-      border-radius: var(--r);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 15px;
-      padding: 0 12px;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b67' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 10px center;
-      padding-right: 34px;
-      cursor: pointer;
-    }
-    input:focus, select:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(127,119,221,0.18); }
-    .row { display: flex; gap: 8px; margin-bottom: 8px; }
-    .row input { flex: 1; }
-
-    /* ── buttons ── */
-    button {
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      height: 42px; padding: 0 18px;
-      border: 0.5px solid var(--border2);
-      border-radius: var(--r);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 14px; font-weight: 500;
-      cursor: pointer;
-      transition: background 0.12s, opacity 0.12s, transform 0.1s;
-      white-space: nowrap;
-    }
-    button:hover  { background: var(--bg2); }
-    button:active { transform: scale(0.98); }
-    .btn-primary  { background: var(--text); color: var(--bg); border-color: var(--text); }
-    .btn-primary:hover { opacity: 0.85; background: var(--text); }
-    .btn-full { width: 100%; }
-    .btn-row { display: flex; gap: 8px; margin-top: 12px; }
-    .btn-row button { flex: 1; }
-
-    /* ── chips ── */
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; min-height: 32px; }
-    .chip {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: var(--bg2); border: 0.5px solid var(--border);
-      border-radius: 999px; padding: 5px 12px;
-      font-size: 13px; color: var(--text);
-    }
-    .chip-x { background: none; border: none; height: auto; padding: 0; font-size: 16px; line-height: 1; color: var(--muted); cursor: pointer; }
-    .chip-x:hover { background: none; color: var(--text); }
-
-    /* ── error ── */
-    .err { font-size: 13px; color: #b91c1c; margin-top: 6px; min-height: 18px; }
-
-    /* ── screens ── */
     .screen { display: none; }
     .screen.active { display: block; }
 
-    /* ── link box ── */
-    .link-box {
+    .bc { text-align: center; padding: 1.5rem 0 1rem; }
+    .bc h2 { color: var(--text); }
+    .bc p { margin-top: 6px; }
+
+    /* cards */
+    .card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--rl); padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .card-title {
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+
+    /* inputs */
+    label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
+    input[type="text"], select {
+      width: 100%; height: 42px;
+      border: 0.5px solid var(--border2); border-radius: var(--r);
+      background: var(--bg); color: var(--text);
+      font-size: 15px; padding: 0 12px; outline: none;
+      -webkit-appearance: none; appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b67' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center;
+      padding-right: 34px; cursor: pointer;
+    }
+    input:focus, select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(127,119,221,0.18);
+    }
+    .row { display: flex; gap: 8px; }
+    .row input { flex: 1; }
+
+    /* buttons */
+    button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      height: 42px; padding: 0 18px;
+      border: 0.5px solid var(--border2); border-radius: var(--r);
+      background: var(--bg); color: var(--text);
+      font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap;
+      transition: background 0.12s, opacity 0.12s, transform 0.1s;
+    }
+    button:hover { background: var(--bg2); }
+    button:active { transform: scale(0.98); }
+    button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary:hover { opacity: 0.85; background: var(--text); }
+    .btn-full { width: 100%; }
+    .btn-row { display: flex; gap: 8px; margin-top: 1rem; }
+    .btn-row button { flex: 1; }
+
+    /* error */
+    .err { font-size: 13px; color: #b91c1c; margin-top: 8px; min-height: 18px; }
+
+    /* room badge */
+    .room-code-big {
+      display: inline-block;
+      font-size: 32px; font-weight: 700; letter-spacing: 8px;
+      color: var(--purple-text); background: var(--purple-bg);
+      border-radius: var(--r); padding: 10px 20px; margin: 8px 0;
+    }
+
+    /* link row */
+    .link-row {
       display: flex; align-items: center; gap: 8px;
       background: var(--bg2); border: 0.5px solid var(--border);
-      border-radius: var(--r); padding: 10px 14px; margin-top: 10px;
+      border-radius: var(--r); padding: 10px 14px; margin: 12px 0;
     }
-    .link-text { flex: 1; font-size: 12px; color: var(--muted); word-break: break-all; line-height: 1.4; }
-    .copied-badge {
-      font-size: 12px; background: var(--teal-bg); color: var(--teal-text);
-      border-radius: 6px; padding: 3px 10px; font-weight: 500;
-      opacity: 0; transition: opacity 0.2s;
-    }
-    .copied-badge.show { opacity: 1; }
+    .link-url { flex: 1; font-size: 12px; color: var(--muted); word-break: break-all; }
 
-    /* ── player grid (lobby) ── */
-    .player-grid {
+    /* player list in lobby */
+    .player-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0; border-bottom: 0.5px solid var(--border);
+      font-size: 14px; color: var(--text);
+    }
+    .player-row:last-child { border-bottom: none; }
+
+    /* avatar */
+    .avatar {
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 600; flex-shrink: 0;
+    }
+    .avatar.sm { width: 32px; height: 32px; font-size: 12px; background: var(--purple-bg); color: var(--purple-text); }
+    .avatar.lg { width: 44px; height: 44px; font-size: 15px; background: var(--purple-bg); color: var(--purple-text); }
+
+    /* waiting pill */
+    .waiting-pill {
+      text-align: center; font-size: 14px; color: var(--muted);
+      background: var(--bg2); border: 0.5px solid var(--border);
+      border-radius: 999px; padding: 10px 20px; margin-top: 12px;
+    }
+
+    /* name cards grid (word + vote screens) */
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 10px; margin: 1rem 0;
     }
-    .player-card {
+
+    .name-card {
       background: var(--bg); border: 0.5px solid var(--border);
       border-radius: var(--rl); padding: 1rem 0.75rem;
-      text-align: center; cursor: pointer;
+      text-align: center; display: flex; flex-direction: column;
+      align-items: center; gap: 6px; position: relative;
       transition: border-color 0.15s, background 0.15s;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
     }
-    .player-card:hover { border-color: var(--purple); background: var(--purple-bg); }
-    .player-card.voted {
-      background: var(--bg2); cursor: default; opacity: 0.5;
+    .name-card-label { font-size: 13px; font-weight: 500; color: var(--text); }
+
+    .name-card.mine { border: 1.5px solid var(--purple); cursor: pointer; }
+    .name-card.mine:hover { background: var(--purple-bg); }
+    .name-card.mine .avatar.lg { background: var(--purple); color: white; }
+
+    .name-card.other { opacity: 0.55; }
+    .name-card.locked { cursor: not-allowed; }
+
+    .name-card.seen-card { border-color: var(--teal-border); }
+    .name-card.seen-card .avatar.lg { background: var(--teal-bg); color: var(--teal-text); }
+
+    .seen-tick {
+      font-size: 11px; font-weight: 600;
+      color: var(--teal-text); background: var(--teal-bg);
+      border-radius: 999px; padding: 2px 8px;
     }
-    .avatar {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--purple-bg);
+
+    .tap-hint { font-size: 11px; color: var(--purple-text); margin-top: 2px; }
+    .lock-badge { font-size: 16px; }
+
+    /* vote card selected */
+    .name-card.voted-for {
+      border: 2px solid var(--purple); background: var(--purple-bg);
+    }
+    .name-card.voted-for .avatar.lg { background: var(--purple); color: white; }
+    .name-card.voted-for .name-card-label { color: var(--purple-text); }
+    .name-card.dimmed { opacity: 0.35; }
+    .name-card.vote-me { opacity: 0.45; cursor: not-allowed; }
+
+    /* vote progress */
+    .vote-progress {
+      text-align: center; font-size: 14px; color: var(--muted);
+      margin: 8px 0 1rem; font-weight: 500;
+    }
+
+    /* word overlay */
+    .overlay-wrap {
+      position: fixed; inset: 0; z-index: 100;
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 600; color: var(--purple-text);
+      padding: 1rem;
     }
-    .player-card:hover .avatar { background: var(--purple); color: white; }
-    .player-card.voted .avatar { background: var(--bg3); color: var(--muted); }
-    .player-card-name { font-size: 13px; font-weight: 500; color: var(--text); }
-
-    /* ── word reveal ── */
-    .word-screen {
-      text-align: center; padding: 2rem 1.5rem;
-      background: var(--bg); border: 0.5px solid var(--border);
-      border-radius: var(--rl); margin: 1rem 0;
+    .overlay-bg {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.55);
     }
-    .your-name { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
-    .your-word { font-size: 36px; font-weight: 700; letter-spacing: -1px; color: var(--text); line-height: 1.2; }
-    .your-word.imposter { color: var(--coral-mid); }
-    .word-sub { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
-
-    /* ── vote cards ── */
-    .vote-card {
-      background: var(--bg); border: 0.5px solid var(--border);
-      border-radius: var(--rl); padding: 1rem 0.75rem;
-      text-align: center; cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 500; color: var(--text);
+    .overlay-card {
+      position: relative; z-index: 1;
+      background: var(--bg); border-radius: var(--rl);
+      padding: 2rem 1.5rem; width: 100%; max-width: 340px;
+      text-align: center;
     }
-    .vote-card:hover { border-color: var(--purple); }
-    .vote-card.selected { border: 2px solid var(--purple); background: var(--purple-bg); color: var(--purple-text); }
-    .vote-card.selected .avatar { background: var(--purple); color: white; }
+    .overlay-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .overlay-word {
+      font-size: 36px; font-weight: 700; letter-spacing: -1px;
+      color: var(--text); line-height: 1.2; margin-bottom: 10px;
+    }
+    .overlay-word.imposter { color: #D85A30; }
+    .overlay-hint { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-    /* ── result banner ── */
+    /* result */
     .result-banner {
-      border-radius: var(--rl); padding: 1.75rem 1.5rem;
+      border-radius: var(--rl); padding: 2rem 1.5rem;
       text-align: center; margin-bottom: 1rem;
     }
-    .result-banner.caught { background: var(--teal-bg); border: 0.5px solid var(--teal-mid); }
-    .result-banner.escaped { background: var(--coral-bg); border: 0.5px solid var(--coral-mid); }
-    .result-icon { font-size: 44px; margin-bottom: 10px; }
-    .result-h { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+    .result-banner.caught { background: var(--teal-bg); border: 0.5px solid var(--teal-border); }
+    .result-banner.escaped { background: var(--coral-bg); border: 0.5px solid var(--coral-border); }
+    .result-icon { font-size: 48px; margin-bottom: 10px; }
+    .result-h { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     .caught .result-h { color: var(--teal-text); }
     .escaped .result-h { color: var(--coral-text); }
     .result-p { font-size: 14px; line-height: 1.6; }
     .caught .result-p { color: var(--teal-text); }
     .escaped .result-p { color: var(--coral-text); }
 
-    /* ── word reveal grid ── */
     .word-reveal-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
       gap: 8px; margin-top: 10px;
     }
-    .wrc {
-      border-radius: var(--r); padding: 8px 10px; text-align: center;
-    }
-    .wrc.regular { background: var(--teal-bg); border: 0.5px solid var(--teal-mid); color: var(--teal-text); }
-    .wrc.imposter { background: var(--coral-bg); border: 0.5px solid var(--coral-mid); color: var(--coral-text); }
+    .wrc { border-radius: var(--r); padding: 8px 10px; text-align: center; }
+    .wrc.regular { background: var(--teal-bg); border: 0.5px solid var(--teal-border); color: var(--teal-text); }
+    .wrc.imposter { background: var(--coral-bg); border: 0.5px solid var(--coral-border); color: var(--coral-text); }
     .wrc-name { font-size: 12px; font-weight: 600; }
-    .wrc-word { font-size: 11px; margin-top: 3px; opacity: 0.8; }
+    .wrc-word { font-size: 11px; margin-top: 3px; opacity: 0.85; }
 
-    /* ── steps ── */
-    .step-list { list-style: none; }
-    .step-list li {
-      display: flex; gap: 10px; font-size: 14px; color: var(--text);
-      line-height: 1.5; margin-bottom: 10px; align-items: flex-start;
-    }
-    .step-num {
-      background: var(--purple-bg); color: var(--purple-text);
-      border-radius: 50%; width: 22px; height: 22px; min-width: 22px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 600;
-    }
-
-    /* ── divider ── */
-    .divider { border: none; border-top: 0.5px solid var(--border); margin: 1rem 0; }
-
-    /* ── big center ── */
-    .bc { text-align: center; padding: 1.5rem 0 0.5rem; }
-    .bc h2 { color: var(--text); }
-    .bc p { margin-top: 6px; }
+    .seen-progress { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
 
     footer { text-align: center; margin-top: 2rem; font-size: 12px; color: var(--muted); }
+
+    .or-divider {
+      text-align: center; font-size: 13px; color: var(--muted);
+      margin: 1.25rem 0; position: relative;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; position: absolute; top: 50%; width: 42%; height: 0.5px;
+      background: var(--border2);
+    }
+    .or-divider::before { left: 0; }
+    .or-divider::after { right: 0; }
+
+    .discuss-big { text-align: center; padding: 3rem 0 1.5rem; }
+    .discuss-big .icon { font-size: 64px; margin-bottom: 1rem; }
+
+    .host-only { display: none; }
   </style>
 </head>
 <body>
@@ -265,14 +282,51 @@
 
   <div class="logo">
     <h1>QA Imposter 🕵️</h1>
-    <p>one word, one imposter — find them before they fool you</p>
+    <p>one word · one imposter · find them</p>
   </div>
 
-  <!-- ══ HOST SETUP ══ -->
-  <div id="s-setup" class="screen active">
-    <div class="card">
+  <!-- ══ HOME ══ -->
+  <div id="s-home" class="screen active">
+    <button class="btn-primary btn-full" style="height:52px;font-size:16px" onclick="createRoom()">
+      create a room
+    </button>
+    <div class="or-divider">or join with a code</div>
+    <div class="row">
+      <input type="text" id="join-code" placeholder="room code" maxlength="4"
+        style="text-transform:uppercase;letter-spacing:4px;font-size:20px;text-align:center;font-weight:600" />
+      <button onclick="joinRoom()">join</button>
+    </div>
+    <p class="err" id="home-err"></p>
+  </div>
+
+  <!-- ══ NAME ENTRY ══ -->
+  <div id="s-name" class="screen">
+    <div class="bc">
+      <h2>joining room</h2>
+      <div class="room-code-big" id="name-room-display"></div>
+      <p>enter your name to join the lobby</p>
+    </div>
+    <div class="row" style="margin-top:1rem">
+      <input type="text" id="name-input" placeholder="your name" maxlength="20" autocomplete="off" />
+      <button onclick="joinLobby()">join</button>
+    </div>
+    <p class="err" id="name-err"></p>
+  </div>
+
+  <!-- ══ LOBBY ══ -->
+  <div id="s-lobby" class="screen">
+    <div class="bc">
+      <p>room code</p>
+      <div class="room-code-big" id="lobby-code"></div>
+    </div>
+
+    <div class="link-row">
+      <span class="link-url" id="lobby-link"></span>
+      <button onclick="copyLink()" style="padding:0 12px;height:34px;font-size:13px">copy link</button>
+    </div>
+
+    <div class="card" id="host-setup" style="display:none">
       <div class="card-title">word pair</div>
-      <label>choose a pair for this round</label>
       <select id="pair-select">
         <option value="pizza|burger">Pizza vs Burger</option>
         <option value="beach|swimming pool">Beach vs Swimming Pool</option>
@@ -285,334 +339,511 @@
         <option value="sunrise|sunset">Sunrise vs Sunset</option>
         <option value="library|bookshop">Library vs Bookshop</option>
       </select>
-      <p style="margin-top:8px;font-size:12px">everyone gets the first word · the imposter gets the second</p>
     </div>
 
     <div class="card">
-      <div class="card-title">players <span id="pcount" style="font-weight:500;text-transform:none;letter-spacing:0">(0)</span></div>
-      <label>add each player's name</label>
-      <div class="row">
-        <input type="text" id="pname" placeholder="e.g. Vyshnavi" maxlength="20" autocomplete="off" />
-        <button onclick="addPlayer()">add</button>
-      </div>
-      <div class="chips" id="chips"></div>
-      <p class="err" id="setup-err"></p>
+      <div class="card-title">players <span id="lobby-count"></span></div>
+      <div id="lobby-players"><p style="color:var(--muted);font-size:14px">waiting for players...</p></div>
     </div>
 
-    <button class="btn-primary btn-full" onclick="createGame()">create game link</button>
+    <button class="btn-primary btn-full" id="start-btn" onclick="startGame()" style="display:none" disabled>
+      waiting for players (need 3+)
+    </button>
+    <div class="waiting-pill" id="guest-wait" style="display:none">waiting for host to start the game...</div>
   </div>
 
-  <!-- ══ SHARE LINK ══ -->
-  <div id="s-share" class="screen">
-    <div class="bc">
-      <h2>share this link</h2>
-      <p>send it to all players — everyone opens it on their own device</p>
-    </div>
-
-    <div class="card" style="margin-top:1rem">
-      <div class="link-box">
-        <span class="link-text" id="share-link-text"></span>
-        <button onclick="copyLink()" style="padding:0 12px;height:34px;font-size:13px">copy</button>
-      </div>
-      <span class="copied-badge" id="copied-badge">copied!</span>
-    </div>
-
-    <div class="card">
-      <div class="card-title">how it works</div>
-      <ul class="step-list">
-        <li><div class="step-num">1</div><span>Everyone opens the link on their phone or laptop</span></li>
-        <li><div class="step-num">2</div><span>Each player taps their own name to see their secret word privately</span></li>
-        <li><div class="step-num">3</div><span>Go around — each person gives one verbal clue about their word</span></li>
-        <li><div class="step-num">4</div><span>Everyone votes on their own device for who they think the imposter is</span></li>
-        <li><div class="step-num">5</div><span>Host clicks reveal — imposter shown to everyone</span></li>
-      </ul>
-    </div>
-
-    <button class="btn-primary btn-full" onclick="goToLobby()">open game (host)</button>
-  </div>
-
-  <!-- ══ LOBBY — pick your name ══ -->
-  <div id="s-lobby" class="screen">
-    <div class="bc">
-      <h2>tap your name</h2>
-      <p>tap your name to see your secret word — don't show anyone else</p>
-    </div>
-    <div class="player-grid" id="lobby-grid"></div>
-    <hr class="divider" />
-    <p style="font-size:12px;text-align:center;color:var(--muted)">host only</p>
-    <button class="btn-full" style="margin-top:8px" onclick="goReveal()">everyone has seen their word → reveal imposter</button>
-  </div>
-
-  <!-- ══ WORD REVEAL ══ -->
+  <!-- ══ WORD SCREEN ══ -->
   <div id="s-word" class="screen">
     <div class="bc">
-      <h2 id="word-player-label"></h2>
-      <p>your secret word for this round</p>
+      <h2>Round 1 — see your word</h2>
+      <p>tap your name card to see your secret word privately</p>
     </div>
-    <div class="word-screen">
-      <div class="your-name" id="word-name-tag"></div>
-      <div class="your-word" id="word-display"></div>
-      <div class="word-sub" id="word-hint"></div>
+    <div class="card-grid" id="word-cards"></div>
+
+    <div class="seen-progress" id="seen-progress"></div>
+    <button class="btn-primary btn-full" id="word-continue-btn" onclick="hostAdvance('discuss')" style="display:none">
+      everyone's ready → continue
+    </button>
+    <div class="waiting-pill" id="word-guest-wait" style="display:none">waiting for host to continue...</div>
+
+    <!-- word overlay -->
+    <div class="overlay-wrap" id="word-overlay" style="display:none">
+      <div class="overlay-bg" onclick="closeOverlay()"></div>
+      <div class="overlay-card">
+        <div class="overlay-label">your secret word is</div>
+        <div class="overlay-word" id="overlay-word"></div>
+        <div class="overlay-hint" id="overlay-hint"></div>
+        <button class="btn-primary btn-full" style="margin-top:1.5rem" onclick="closeOverlay()">got it — close</button>
+      </div>
     </div>
-    <button class="btn-full" onclick="goBackLobby()">done — go back</button>
   </div>
 
-  <!-- ══ VOTE ══ -->
+  <!-- ══ DISCUSS SCREEN ══ -->
+  <div id="s-discuss" class="screen">
+    <div class="discuss-big">
+      <div class="icon">🗣️</div>
+      <h2>give your clues!</h2>
+      <p style="margin-top:8px;max-width:320px;margin-left:auto;margin-right:auto">
+        go around — each person gives one clue about their word on the call.<br>
+        <strong style="color:var(--text)">don't say the word itself!</strong>
+      </p>
+    </div>
+    <button class="btn-primary btn-full" id="discuss-continue-btn" onclick="hostAdvance('vote')" style="display:none">
+      everyone gave a clue → continue to vote
+    </button>
+    <div class="waiting-pill" id="discuss-guest-wait" style="display:none">waiting for host to start voting...</div>
+  </div>
+
+  <!-- ══ VOTE SCREEN ══ -->
   <div id="s-vote" class="screen">
     <div class="bc">
-      <h2>vote for the imposter</h2>
-      <p>after everyone has given their clue, each player picks who they think it is</p>
+      <h2>who's the imposter?</h2>
+      <p>tap the person you think has a different word</p>
     </div>
-    <div class="player-grid" id="vote-grid"></div>
+    <div class="card-grid" id="vote-cards"></div>
+    <div class="vote-progress" id="vote-progress"></div>
     <p class="err" id="vote-err"></p>
-    <hr class="divider" />
-    <p style="font-size:12px;text-align:center;color:var(--muted);margin-bottom:8px">host only — click after everyone has voted</p>
-    <button class="btn-primary btn-full" onclick="goReveal()">reveal the imposter</button>
+    <button class="btn-primary btn-full" id="reveal-btn" onclick="hostAdvance('reveal')" style="display:none" disabled>
+      reveal the imposter
+    </button>
+    <div class="waiting-pill" id="vote-guest-wait" style="display:none">waiting for host to reveal...</div>
   </div>
 
-  <!-- ══ RESULT ══ -->
-  <div id="s-result" class="screen">
-    <div id="result-banner"></div>
-
-    <div class="card">
-      <div class="card-title">everyone's words</div>
-      <div class="word-reveal-grid" id="reveal-grid"></div>
-    </div>
-
+  <!-- ══ REVEAL SCREEN ══ -->
+  <div id="s-reveal" class="screen">
+    <div id="reveal-content"></div>
     <div class="btn-row">
-      <button onclick="playAgain()">play again</button>
-      <button class="btn-primary" onclick="newGame()">new game</button>
+      <button id="play-again-btn" onclick="playAgain()" style="display:none">play again</button>
+      <div class="waiting-pill" id="reveal-guest-wait" style="display:none;flex:1">waiting for host to start next round...</div>
     </div>
   </div>
 
   <footer>QA Imposter · open on any device · no app needed</footer>
 </div>
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
-  /* ── word pairs ── */
+  // ══════════════════════════════════════════
+  // REPLACE THIS WITH YOUR FIREBASE CONFIG
+  // ══════════════════════════════════════════
+  const firebaseConfig = {
+    apiKey: "REPLACE_ME",
+    authDomain: "REPLACE_ME.firebaseapp.com",
+    databaseURL: "https://REPLACE_ME-default-rtdb.firebaseio.com",
+    projectId: "REPLACE_ME",
+    storageBucket: "REPLACE_ME.appspot.com",
+    messagingSenderId: "REPLACE_ME",
+    appId: "REPLACE_ME"
+  };
+  // ══════════════════════════════════════════
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
   const PAIRS = {
-    'pizza|burger':               { main: 'Pizza',          imp: 'Burger' },
-    'beach|swimming pool':        { main: 'Beach',          imp: 'Swimming Pool' },
-    'coffee|tea':                 { main: 'Coffee',         imp: 'Tea' },
-    'airport|train station':      { main: 'Airport',        imp: 'Train Station' },
-    'birthday cake|wedding cake': { main: 'Birthday Cake',  imp: 'Wedding Cake' },
-    'rain|snow':                  { main: 'Rain',           imp: 'Snow' },
-    'cat|dog':                    { main: 'Cat',            imp: 'Dog' },
-    'hotel|hostel':               { main: 'Hotel',          imp: 'Hostel' },
-    'sunrise|sunset':             { main: 'Sunrise',        imp: 'Sunset' },
-    'library|bookshop':           { main: 'Library',        imp: 'Bookshop' },
+    'pizza|burger':               { main: 'Pizza',         imp: 'Burger' },
+    'beach|swimming pool':        { main: 'Beach',         imp: 'Swimming Pool' },
+    'coffee|tea':                 { main: 'Coffee',        imp: 'Tea' },
+    'airport|train station':      { main: 'Airport',       imp: 'Train Station' },
+    'birthday cake|wedding cake': { main: 'Birthday Cake', imp: 'Wedding Cake' },
+    'rain|snow':                  { main: 'Rain',          imp: 'Snow' },
+    'cat|dog':                    { main: 'Cat',           imp: 'Dog' },
+    'hotel|hostel':               { main: 'Hotel',         imp: 'Hostel' },
+    'sunrise|sunset':             { main: 'Sunrise',       imp: 'Sunset' },
+    'library|bookshop':           { main: 'Library',       imp: 'Bookshop' },
   };
 
-  /* ── state ── */
-  let G = null; // { players[], mainWord, impWord, impName }
-  let seenPlayers = new Set();
-  let selectedVote = null;
+  let roomCode = null;
+  let myName   = null;
+  let myKey    = null;
+  let isHost   = false;
+  let gameRef  = null;
+  let lastStatus = null;
 
-  /* ── seeded random ── */
-  let seed = Date.now();
-  function rand() {
-    seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
-    return (seed >>> 0) / 0xffffffff;
+  // ── utils ──
+  function toKey(name) { return name.toLowerCase().replace(/[^a-z0-9]/g, '_'); }
+
+  function initials(name) {
+    return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
   }
 
-  /* ── player list (setup) ── */
-  let players = [];
-
-  function addPlayer() {
-    const inp = document.getElementById('pname');
-    const name = inp.value.trim();
-    if (!name) return;
-    if (players.find(p => p.toLowerCase() === name.toLowerCase())) { showErr('setup-err', 'name already added'); return; }
-    if (players.length >= 15) { showErr('setup-err', 'max 15 players'); return; }
-    players.push(name);
-    inp.value = '';
-    clearErr('setup-err');
-    renderChips();
+  function genCode() {
+    const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    return Array.from({length:4}, () => c[Math.floor(Math.random()*c.length)]).join('');
   }
 
-  document.getElementById('pname').addEventListener('keydown', e => { if (e.key === 'Enter') addPlayer(); });
-
-  function removePlayer(i) { players.splice(i, 1); renderChips(); }
-
-  function renderChips() {
-    document.getElementById('pcount').textContent = `(${players.length})`;
-    document.getElementById('chips').innerHTML = players.map((p, i) =>
-      `<span class="chip">${p}<button class="chip-x" onclick="removePlayer(${i})" aria-label="remove">&times;</button></span>`
-    ).join('');
-  }
-
-  /* ── create game ── */
-  function createGame() {
-    if (players.length < 3) { showErr('setup-err', 'add at least 3 players'); return; }
-    seed = Date.now();
-    const pairKey = document.getElementById('pair-select').value;
-    const pair = PAIRS[pairKey];
-    const impIdx = Math.floor(rand() * players.length);
-    G = { players: [...players], mainWord: pair.main, impWord: pair.imp, impName: players[impIdx] };
-
-    const encoded = btoa(JSON.stringify(G));
-    const url = location.origin + location.pathname + '#g=' + encoded;
-
-    document.getElementById('share-link-text').textContent = url;
-    show('s-share');
-  }
-
-  function copyLink() {
-    const url = document.getElementById('share-link-text').textContent;
-    navigator.clipboard.writeText(url).catch(() => {});
-    const badge = document.getElementById('copied-badge');
-    badge.classList.add('show');
-    setTimeout(() => badge.classList.remove('show'), 2000);
-  }
-
-  function goToLobby() {
-    seenPlayers.clear();
-    renderLobby();
-    show('s-lobby');
-  }
-
-  /* ── lobby ── */
-  function renderLobby() {
-    document.getElementById('lobby-grid').innerHTML = G.players.map(p => {
-      const seen = seenPlayers.has(p);
-      return `<div class="player-card ${seen ? 'voted' : ''}" onclick="${seen ? '' : `pickPlayer('${esc(p)}')`}">
-        <div class="avatar">${initials(p)}</div>
-        <div class="player-card-name">${p}${seen ? ' ✓' : ''}</div>
-      </div>`;
-    }).join('');
-  }
-
-  function pickPlayer(name) {
-    seenPlayers.add(name);
-    const isImp = name === G.impName;
-    document.getElementById('word-player-label').textContent = `Hi, ${name}!`;
-    document.getElementById('word-name-tag').textContent = 'your word is';
-    const wd = document.getElementById('word-display');
-    wd.textContent = isImp ? G.impWord : G.mainWord;
-    wd.className = 'your-word' + (isImp ? ' imposter' : '');
-    document.getElementById('word-hint').textContent = isImp
-      ? 'you are the imposter — blend in with a convincing clue!'
-      : 'you are a regular player — give a clue without saying the word';
-    show('s-word');
-  }
-
-  function goBackLobby() {
-    renderLobby();
-    show('s-lobby');
-  }
-
-  /* ── voting ── */
-  function goReveal() {
-    if (location.hash.includes('#g=') && !G) loadFromHash();
-    selectedVote = null;
-    document.getElementById('vote-grid').innerHTML = G.players.map(p =>
-      `<div class="vote-card" id="vc-${esc(p)}" onclick="selectVote('${esc(p)}')">
-        <div class="avatar">${initials(p)}</div>
-        ${p}
-      </div>`
-    ).join('');
-    show('s-vote');
-  }
-
-  function selectVote(name) {
-    if (selectedVote) {
-      const prev = document.getElementById('vc-' + esc(selectedVote));
-      if (prev) prev.classList.remove('selected');
-    }
-    selectedVote = name;
-    const el = document.getElementById('vc-' + esc(name));
-    if (el) el.classList.add('selected');
-    clearErr('vote-err');
-  }
-
-  function revealResult() {
-    if (!selectedVote) { showErr('vote-err', 'select who you think is the imposter first'); return; }
-    const caught = selectedVote === G.impName;
-    const banner = document.getElementById('result-banner');
-    if (caught) {
-      banner.innerHTML = `<div class="result-banner caught">
-        <div class="result-icon">🎉</div>
-        <div class="result-h">imposter caught!</div>
-        <div class="result-p"><strong>${G.impName}</strong> was the imposter.<br>Their word was "<strong>${G.impWord}</strong>" while everyone else had "<strong>${G.mainWord}</strong>".</div>
-      </div>`;
-    } else {
-      banner.innerHTML = `<div class="result-banner escaped">
-        <div class="result-icon">😈</div>
-        <div class="result-h">imposter escaped!</div>
-        <div class="result-p"><strong>${G.impName}</strong> fooled you! Their word was "<strong>${G.impWord}</strong>".<br>You voted for <strong>${selectedVote}</strong> instead.</div>
-      </div>`;
-    }
-    document.getElementById('reveal-grid').innerHTML = G.players.map(p =>
-      `<div class="wrc ${p === G.impName ? 'imposter' : 'regular'}">
-        <div class="wrc-name">${p}</div>
-        <div class="wrc-word">${p === G.impName ? G.impWord : G.mainWord}</div>
-      </div>`
-    ).join('');
-    show('s-result');
-  }
-
-  /* ── play again / new game ── */
-  function playAgain() {
-    seed = Date.now();
-    const pairKey = document.getElementById('pair-select') ?
-      document.getElementById('pair-select').value :
-      Object.keys(PAIRS)[Math.floor(rand() * Object.keys(PAIRS).length)];
-    const pair = PAIRS[pairKey] || Object.values(PAIRS)[Math.floor(rand() * Object.values(PAIRS).length)];
-    const impIdx = Math.floor(rand() * G.players.length);
-    G = { players: G.players, mainWord: pair.main, impWord: pair.imp, impName: G.players[impIdx] };
-    const encoded = btoa(JSON.stringify(G));
-    const url = location.origin + location.pathname + '#g=' + encoded;
-    history.replaceState(null, '', url);
-    document.getElementById('share-link-text') && (document.getElementById('share-link-text').textContent = url);
-    seenPlayers.clear();
-    selectedVote = null;
-    renderLobby();
-    show('s-lobby');
-  }
-
-  function newGame() {
-    G = null; players = []; seenPlayers.clear(); selectedVote = null;
-    history.replaceState(null, '', location.pathname);
-    renderChips();
-    show('s-setup');
-  }
-
-  /* ── URL hash loading (players joining via link) ── */
-  function loadFromHash() {
-    const hash = location.hash;
-    if (!hash.startsWith('#g=')) return false;
-    try {
-      G = JSON.parse(atob(hash.slice(3)));
-      return true;
-    } catch(e) { return false; }
-  }
-
-  /* ── init ── */
-  window.addEventListener('load', () => {
-    if (loadFromHash()) {
-      seenPlayers.clear();
-      renderLobby();
-      show('s-lobby');
-    }
-  });
-
-  /* ── the reveal button in vote screen ── */
-  document.querySelector('#s-vote button.btn-primary').addEventListener('click', revealResult);
-
-  /* ── helpers ── */
   function show(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     window.scrollTo(0, 0);
   }
 
-  function initials(name) {
-    return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  function setErr(id, msg) { const e = document.getElementById(id); if(e) e.textContent = msg; }
+  function clrErr(id)      { const e = document.getElementById(id); if(e) e.textContent = ''; }
+
+  function sortedPlayers(players) {
+    return Object.values(players || {}).sort((a,b) => (a.joinedAt||0)-(b.joinedAt||0));
   }
 
-  function esc(s) { return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
-  function showErr(id, msg) { document.getElementById(id).textContent = msg; }
-  function clearErr(id) { document.getElementById(id).textContent = ''; }
+  // ── HOME ──
+  function createRoom() {
+    roomCode = genCode();
+    isHost   = true;
+    ls('qi_room', roomCode); ls('qi_host', 'true');
+    document.getElementById('name-room-display').textContent = roomCode;
+    show('s-name');
+  }
+
+  function joinRoom() {
+    const code = document.getElementById('join-code').value.trim().toUpperCase();
+    if (code.length !== 4) { setErr('home-err', 'enter a 4-letter room code'); return; }
+    db.ref(`rooms/${code}`).once('value').then(snap => {
+      if (!snap.exists()) { setErr('home-err', 'room not found — check the code'); return; }
+      roomCode = code; isHost = false;
+      ls('qi_room', code); ls('qi_host', 'false');
+      document.getElementById('name-room-display').textContent = code;
+      show('s-name');
+    });
+  }
+
+  document.getElementById('join-code').addEventListener('input', function() {
+    this.value = this.value.toUpperCase();
+  });
+  document.getElementById('join-code').addEventListener('keydown', e => { if(e.key==='Enter') joinRoom(); });
+
+  // ── NAME ENTRY ──
+  function joinLobby() {
+    const name = document.getElementById('name-input').value.trim();
+    if (!name) { setErr('name-err', 'enter your name'); return; }
+    const key = toKey(name);
+
+    db.ref(`rooms/${roomCode}/players/${key}`).once('value').then(snap => {
+      if (snap.exists()) { setErr('name-err', 'name taken — try a different one'); return; }
+      myName = name; myKey = key;
+      ls('qi_name', name); ls('qi_key', key);
+
+      const writes = {};
+      writes[`rooms/${roomCode}/players/${key}`] = {
+        displayName: name, seenWord: false, vote: null,
+        joinedAt: firebase.database.ServerValue.TIMESTAMP
+      };
+      if (isHost) {
+        writes[`rooms/${roomCode}/status`]    = 'lobby';
+        writes[`rooms/${roomCode}/hostKey`]   = key;
+        writes[`rooms/${roomCode}/createdAt`] = firebase.database.ServerValue.TIMESTAMP;
+      }
+      db.ref().update(writes).then(() => { attachListener(); });
+    });
+  }
+
+  document.getElementById('name-input').addEventListener('keydown', e => { if(e.key==='Enter') joinLobby(); });
+
+  // ── LOBBY render ──
+  function renderLobby(data) {
+    const players = sortedPlayers(data.players);
+    const count   = players.length;
+    const link    = `${location.origin}${location.pathname}#${roomCode}`;
+
+    document.getElementById('lobby-code').textContent = roomCode;
+    document.getElementById('lobby-link').textContent = link;
+    document.getElementById('lobby-count').textContent = `(${count})`;
+    document.getElementById('lobby-players').innerHTML = players.length
+      ? players.map(p => `
+          <div class="player-row">
+            <div class="avatar sm">${initials(p.displayName)}</div>
+            <span>${p.displayName}</span>
+          </div>`).join('')
+      : '<p style="color:var(--muted);font-size:14px">no one yet...</p>';
+
+    if (isHost) {
+      document.getElementById('host-setup').style.display = 'block';
+      document.getElementById('guest-wait').style.display = 'none';
+      const btn = document.getElementById('start-btn');
+      btn.style.display = 'block';
+      btn.disabled = count < 3;
+      btn.textContent = count < 3
+        ? `waiting for players (${count} joined, need 3+)`
+        : `start game — ${count} players`;
+    } else {
+      document.getElementById('host-setup').style.display = 'none';
+      document.getElementById('guest-wait').style.display = 'block';
+      document.getElementById('start-btn').style.display = 'none';
+    }
+
+    show('s-lobby');
+  }
+
+  function copyLink() {
+    const link = `${location.origin}${location.pathname}#${roomCode}`;
+    navigator.clipboard.writeText(link).catch(() => {});
+  }
+
+  // ── START GAME ──
+  function startGame() {
+    const pairKey = document.getElementById('pair-select').value;
+    const pair    = PAIRS[pairKey];
+
+    db.ref(`rooms/${roomCode}/players`).once('value').then(snap => {
+      const players = snap.val() || {};
+      const keys    = Object.keys(players);
+      const impIdx  = Math.floor(Math.random() * keys.length);
+      const impKey  = keys[impIdx];
+
+      const updates = {};
+      keys.forEach(k => {
+        updates[`rooms/${roomCode}/players/${k}/word`]     = (k === impKey) ? pair.imp : pair.main;
+        updates[`rooms/${roomCode}/players/${k}/seenWord`] = false;
+        updates[`rooms/${roomCode}/players/${k}/vote`]     = null;
+      });
+      updates[`rooms/${roomCode}/status`]   = 'word';
+      updates[`rooms/${roomCode}/mainWord`] = pair.main;
+      updates[`rooms/${roomCode}/impWord`]  = pair.imp;
+      updates[`rooms/${roomCode}/impName`]  = players[impKey].displayName;
+      updates[`rooms/${roomCode}/impKey`]   = impKey;
+
+      db.ref().update(updates);
+    });
+  }
+
+  // ── WORD SCREEN ──
+  function renderWordScreen(data) {
+    const players   = sortedPlayers(data.players);
+    const seenCount = players.filter(p => p.seenWord).length;
+    const total     = players.length;
+
+    document.getElementById('word-cards').innerHTML = players.map(p => {
+      const key  = toKey(p.displayName);
+      const isMe = key === myKey;
+      const seen = p.seenWord;
+      if (isMe) {
+        return `<div class="name-card mine ${seen ? 'seen-card' : ''}" onclick="${!seen ? 'revealWord()' : ''}">
+          <div class="avatar lg">${initials(p.displayName)}</div>
+          <div class="name-card-label">${p.displayName}</div>
+          ${seen ? '<div class="seen-tick">seen ✓</div>' : '<div class="tap-hint">tap me</div>'}
+        </div>`;
+      } else {
+        return `<div class="name-card other locked">
+          <div class="avatar lg">${initials(p.displayName)}</div>
+          <div class="name-card-label">${p.displayName}</div>
+          ${seen ? '<div class="seen-tick">seen ✓</div>' : '<div class="lock-badge">🔒</div>'}
+        </div>`;
+      }
+    }).join('');
+
+    document.getElementById('seen-progress').textContent = `${seenCount} of ${total} have seen their word`;
+
+    if (isHost) {
+      document.getElementById('word-continue-btn').style.display = 'block';
+      document.getElementById('word-guest-wait').style.display   = 'none';
+    } else {
+      document.getElementById('word-continue-btn').style.display = 'none';
+      document.getElementById('word-guest-wait').style.display   = 'block';
+    }
+  }
+
+  function revealWord() {
+    db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap => {
+      const player = snap.val();
+      if (!player) return;
+      db.ref(`rooms/${roomCode}/impKey`).once('value').then(impSnap => {
+        const amImposter = impSnap.val() === myKey;
+        const wordEl = document.getElementById('overlay-word');
+        wordEl.textContent = player.word;
+        wordEl.className   = 'overlay-word' + (amImposter ? ' imposter' : '');
+        document.getElementById('overlay-hint').textContent = amImposter
+          ? '😈 you are the imposter — blend in with a confident clue!'
+          : '✅ you are a regular player — give a clue without saying the word';
+        document.getElementById('word-overlay').style.display = 'flex';
+        db.ref(`rooms/${roomCode}/players/${myKey}/seenWord`).set(true);
+      });
+    });
+  }
+
+  function closeOverlay() {
+    document.getElementById('word-overlay').style.display = 'none';
+  }
+
+  // ── VOTE SCREEN ──
+  function renderVoteScreen(data) {
+    const players    = sortedPlayers(data.players);
+    const total      = players.length;
+    const votedCount = players.filter(p => p.vote).length;
+    const myPlayer   = data.players?.[myKey];
+    const myVote     = myPlayer?.vote;
+
+    document.getElementById('vote-cards').innerHTML = players.map(p => {
+      const key  = toKey(p.displayName);
+      const isMe = key === myKey;
+      let cls    = 'name-card';
+      if (isMe)                          cls += ' vote-me';
+      else if (myVote === p.displayName) cls += ' voted-for';
+      else if (myVote)                   cls += ' dimmed';
+      const clickable = !myVote && !isMe;
+      return `<div class="${cls}" onclick="${clickable ? `castVote('${p.displayName.replace(/'/g,"\\'")}')` : ''}">
+        <div class="avatar lg">${initials(p.displayName)}</div>
+        <div class="name-card-label">${p.displayName}</div>
+        ${p.vote ? '<div class="seen-tick">voted ✓</div>' : ''}
+      </div>`;
+    }).join('');
+
+    document.getElementById('vote-progress').textContent = `${votedCount} of ${total} voted`;
+
+    if (isHost) {
+      const btn = document.getElementById('reveal-btn');
+      btn.style.display = 'block';
+      document.getElementById('vote-guest-wait').style.display = 'none';
+      btn.disabled    = votedCount < total;
+      btn.textContent = votedCount < total
+        ? `waiting for everyone to vote (${votedCount}/${total})`
+        : 'reveal the imposter';
+    } else {
+      document.getElementById('reveal-btn').style.display    = 'none';
+      document.getElementById('vote-guest-wait').style.display = 'block';
+    }
+
+    clrErr('vote-err');
+  }
+
+  function castVote(targetName) {
+    db.ref(`rooms/${roomCode}/players/${myKey}/vote`).once('value').then(snap => {
+      if (snap.val()) return;
+      db.ref(`rooms/${roomCode}/players/${myKey}/vote`).set(targetName);
+    });
+  }
+
+  // ── REVEAL SCREEN ──
+  function renderReveal(data) {
+    const players = sortedPlayers(data.players);
+    const votes   = {};
+    players.forEach(p => { if (p.vote) votes[p.vote] = (votes[p.vote]||0)+1; });
+    const topVoted = Object.entries(votes).sort((a,b) => b[1]-a[1])[0];
+    const caught   = topVoted && topVoted[0] === data.impName;
+
+    const wordChips = players.map(p => {
+      const isImp = toKey(p.displayName) === data.impKey;
+      return `<div class="wrc ${isImp ? 'imposter' : 'regular'}">
+        <div class="wrc-name">${p.displayName}</div>
+        <div class="wrc-word">${isImp ? data.impWord : data.mainWord}</div>
+      </div>`;
+    }).join('');
+
+    const voteRows = Object.entries(votes).sort((a,b)=>b[1]-a[1]).map(([name, count]) =>
+      `<div class="player-row">
+        <div class="avatar sm">${initials(name)}</div>
+        <span style="flex:1">${name}</span>
+        <span style="font-size:13px;color:var(--muted)">${count} vote${count>1?'s':''}</span>
+      </div>`
+    ).join('');
+
+    document.getElementById('reveal-content').innerHTML = `
+      <div class="result-banner ${caught ? 'caught' : 'escaped'}">
+        <div class="result-icon">${caught ? '🎉' : '😈'}</div>
+        <div class="result-h">${caught ? 'imposter caught!' : 'imposter escaped!'}</div>
+        <div class="result-p">${caught
+          ? `<strong>${data.impName}</strong> was the imposter.<br>Their word was "<strong>${data.impWord}</strong>" while everyone else had "<strong>${data.mainWord}</strong>".`
+          : `<strong>${data.impName}</strong> fooled everyone! Their word was "<strong>${data.impWord}</strong>".<br>The group voted for <strong>${topVoted?.[0] || '?'}</strong> instead.`
+        }</div>
+      </div>
+      <div class="card">
+        <div class="card-title">everyone's words</div>
+        <div class="word-reveal-grid">${wordChips}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">votes cast</div>
+        ${voteRows || '<p style="color:var(--muted);font-size:14px">no votes recorded</p>'}
+      </div>`;
+
+    if (isHost) {
+      document.getElementById('play-again-btn').style.display     = 'block';
+      document.getElementById('reveal-guest-wait').style.display  = 'none';
+    } else {
+      document.getElementById('play-again-btn').style.display     = 'none';
+      document.getElementById('reveal-guest-wait').style.display  = 'block';
+    }
+  }
+
+  // ── PLAY AGAIN ──
+  function playAgain() {
+    db.ref(`rooms/${roomCode}/players`).once('value').then(snap => {
+      const players = snap.val() || {};
+      const updates = {};
+      Object.keys(players).forEach(k => {
+        updates[`rooms/${roomCode}/players/${k}/seenWord`] = false;
+        updates[`rooms/${roomCode}/players/${k}/vote`]     = null;
+        updates[`rooms/${roomCode}/players/${k}/word`]     = null;
+      });
+      updates[`rooms/${roomCode}/status`]   = 'lobby';
+      updates[`rooms/${roomCode}/mainWord`] = null;
+      updates[`rooms/${roomCode}/impWord`]  = null;
+      updates[`rooms/${roomCode}/impName`]  = null;
+      updates[`rooms/${roomCode}/impKey`]   = null;
+      db.ref().update(updates);
+    });
+  }
+
+  // ── HOST ADVANCE ──
+  function hostAdvance(nextStatus) {
+    db.ref(`rooms/${roomCode}/status`).set(nextStatus);
+  }
+
+  // ── REAL-TIME LISTENER ──
+  function attachListener() {
+    if (gameRef) gameRef.off();
+    gameRef = db.ref(`rooms/${roomCode}`);
+    gameRef.on('value', snap => {
+      const data = snap.val();
+      if (!data) return;
+      const status = data.status;
+
+      if (status !== lastStatus) {
+        lastStatus = status;
+        switch (status) {
+          case 'lobby':   renderLobby(data);       break;
+          case 'word':    show('s-word');           break;
+          case 'discuss':
+            show('s-discuss');
+            document.getElementById('discuss-continue-btn').style.display = isHost ? 'block' : 'none';
+            document.getElementById('discuss-guest-wait').style.display   = isHost ? 'none'  : 'block';
+            break;
+          case 'reveal':  show('s-reveal'); renderReveal(data); break;
+        }
+      }
+
+      if (status === 'lobby')  renderLobby(data);
+      if (status === 'word')   renderWordScreen(data);
+      if (status === 'vote')   { show('s-vote'); renderVoteScreen(data); }
+    });
+  }
+
+  // ── SESSION RESTORE / URL HASH JOIN ──
+  window.addEventListener('load', () => {
+    const hash = location.hash.slice(1).toUpperCase();
+    const savedRoom = ls('qi_room');
+    const savedName = ls('qi_name');
+    const savedKey  = ls('qi_key');
+    const savedHost = ls('qi_host');
+
+    if (hash && /^[A-Z]{4}$/.test(hash)) {
+      roomCode = hash; isHost = false;
+      ls('qi_room', hash); ls('qi_host', 'false');
+      document.getElementById('name-room-display').textContent = hash;
+      show('s-name');
+    } else if (savedRoom && savedName && savedKey) {
+      roomCode = savedRoom; myName = savedName;
+      myKey = savedKey; isHost = savedHost === 'true';
+      db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap => {
+        if (snap.exists()) { attachListener(); }
+        else { clearSession(); show('s-home'); }
+      });
+    }
+  });
+
+  // ── LOCAL STORAGE helpers ──
+  function ls(k, v) { if (v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
+  function clearSession() { ['qi_room','qi_name','qi_key','qi_host'].forEach(k => localStorage.removeItem(k)); }
 </script>
 </body>
 </html>
