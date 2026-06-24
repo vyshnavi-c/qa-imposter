@@ -262,16 +262,8 @@
     <div class="card" id="host-setup" style="display:none">
       <div class="card-title">word pair for this round</div>
       <select id="pair-select">
-        <option value="pizza|burger">Pizza vs Burger</option>
-        <option value="beach|swimming pool">Beach vs Swimming Pool</option>
-        <option value="coffee|tea">Coffee vs Tea</option>
-        <option value="airport|train station">Airport vs Train Station</option>
-        <option value="birthday cake|wedding cake">Birthday Cake vs Wedding Cake</option>
-        <option value="rain|snow">Rain vs Snow</option>
-        <option value="cat|dog">Cat vs Dog</option>
-        <option value="hotel|hostel">Hotel vs Hostel</option>
-        <option value="sunrise|sunset">Sunrise vs Sunset</option>
-        <option value="library|bookshop">Library vs Bookshop</option>
+        <option value="netflix|youtube">Round 1 — Netflix vs YouTube</option>
+        <option value="hotfix|patch">Round 2 — Hotfix vs Patch</option>
       </select>
     </div>
 
@@ -343,16 +335,8 @@
   const db = firebase.database();
 
   const PAIRS = {
-    'pizza|burger':               { main: 'Pizza',         imp: 'Burger' },
-    'beach|swimming pool':        { main: 'Beach',         imp: 'Swimming Pool' },
-    'coffee|tea':                 { main: 'Coffee',        imp: 'Tea' },
-    'airport|train station':      { main: 'Airport',       imp: 'Train Station' },
-    'birthday cake|wedding cake': { main: 'Birthday Cake', imp: 'Wedding Cake' },
-    'rain|snow':                  { main: 'Rain',          imp: 'Snow' },
-    'cat|dog':                    { main: 'Cat',           imp: 'Dog' },
-    'hotel|hostel':               { main: 'Hotel',         imp: 'Hostel' },
-    'sunrise|sunset':             { main: 'Sunrise',       imp: 'Sunset' },
-    'library|bookshop':           { main: 'Library',       imp: 'Bookshop' },
+    'netflix|youtube': { main: 'Netflix', imp: 'YouTube' },
+    'hotfix|patch':    { main: 'Hotfix',  imp: 'Patch' },
   };
 
   let roomCode = null, myName = null, myKey = null, isHost = false;
