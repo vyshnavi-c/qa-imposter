@@ -6,216 +6,133 @@
   <title>QA Imposter</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #ffffff; --bg2: #f6f5f2; --bg3: #edebe6;
-      --text: #1a1a18; --muted: #6b6b67;
-      --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.22);
-      --purple: #7F77DD; --purple-bg: #EEEDFE; --purple-text: #3C3489;
-      --teal-bg: #E1F5EE; --teal-text: #085041; --teal-border: #1D9E75;
-      --coral-bg: #FAECE7; --coral-text: #712B13; --coral-border: #D85A30;
-      --r: 10px; --rl: 14px;
+      --bg:#ffffff; --bg2:#f6f5f2; --bg3:#edebe6;
+      --text:#1a1a18; --muted:#6b6b67;
+      --border:rgba(0,0,0,0.12); --border2:rgba(0,0,0,0.22);
+      --purple:#7F77DD; --purple-bg:#EEEDFE; --purple-text:#3C3489;
+      --teal-bg:#E1F5EE; --teal-text:#085041; --teal-border:#1D9E75;
+      --coral-bg:#FAECE7; --coral-text:#712B13; --coral-border:#D85A30;
+      --r:10px; --rl:14px;
     }
-
-    @media (prefers-color-scheme: dark) {
+    @media (prefers-color-scheme:dark) {
       :root {
-        --bg: #181816; --bg2: #222220; --bg3: #2a2a27;
-        --text: #f0ede8; --muted: #9a9994;
-        --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
-        --purple-bg: #26215C; --purple-text: #CECBF6;
-        --teal-bg: #04342C; --teal-text: #9FE1CB; --teal-border: #1D9E75;
-        --coral-bg: #4A1B0C; --coral-text: #F5C4B3; --coral-border: #D85A30;
+        --bg:#181816; --bg2:#222220; --bg3:#2a2a27;
+        --text:#f0ede8; --muted:#9a9994;
+        --border:rgba(255,255,255,0.1); --border2:rgba(255,255,255,0.2);
+        --purple-bg:#26215C; --purple-text:#CECBF6;
+        --teal-bg:#04342C; --teal-text:#9FE1CB; --teal-border:#1D9E75;
+        --coral-bg:#4A1B0C; --coral-text:#F5C4B3; --coral-border:#D85A30;
       }
     }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg3); color: var(--text);
-      min-height: 100vh; display: flex; justify-content: center;
-      padding: 1.5rem 1rem 4rem;
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:var(--bg3); color:var(--text);
+      min-height:100vh; display:flex; justify-content:center;
+      padding:1.5rem 1rem 4rem;
     }
-
-    .wrap { width: 100%; max-width: 480px; }
-
-    h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
-    h2 { font-size: 20px; font-weight: 600; color: var(--text); }
-    p  { font-size: 14px; line-height: 1.6; color: var(--muted); }
-
-    .logo { text-align: center; padding: 2rem 0 1.5rem; }
-    .logo h1 { color: var(--text); }
-    .logo p { margin-top: 4px; }
-
-    .screen { display: none; }
-    .screen.active { display: block; }
-    .bc { text-align: center; padding: 1.5rem 0 1rem; }
-    .bc p { margin-top: 6px; }
-
-    .card {
-      background: var(--bg); border: 0.5px solid var(--border);
-      border-radius: var(--rl); padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    .wrap { width:100%; max-width:480px; }
+    h2 { font-size:20px; font-weight:600; color:var(--text); }
+    p  { font-size:14px; line-height:1.6; color:var(--muted); }
+    .logo { text-align:center; padding:2rem 0 1.5rem; }
+    .logo h1 { font-size:26px; font-weight:700; letter-spacing:-0.5px; color:var(--text); }
+    .logo p { margin-top:4px; }
+    .screen { display:none; }
+    .screen.active { display:block; }
+    .bc { text-align:center; padding:1.5rem 0 1rem; }
+    .bc p { margin-top:6px; }
+    .card { background:var(--bg); border:0.5px solid var(--border); border-radius:var(--rl); padding:1.25rem 1.5rem; margin-bottom:1rem; }
+    .card-title { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:12px; }
+    input[type="text"] {
+      width:100%; height:42px; border:0.5px solid var(--border2); border-radius:var(--r);
+      background:var(--bg); color:var(--text); font-size:15px; padding:0 12px; outline:none;
+      -webkit-appearance:none;
     }
-    .card-title {
-      font-size: 12px; font-weight: 600; color: var(--muted);
-      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
-    }
-
-    label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
-    input[type="text"], select {
-      width: 100%; height: 42px;
-      border: 0.5px solid var(--border2); border-radius: var(--r);
-      background: var(--bg); color: var(--text);
-      font-size: 15px; padding: 0 12px; outline: none;
-      -webkit-appearance: none; appearance: none;
-    }
-    select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b67' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 10px center;
-      padding-right: 34px; cursor: pointer;
-    }
-    input:focus, select:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(127,119,221,0.18); }
-    .row { display: flex; gap: 8px; }
-    .row input { flex: 1; }
-
+    input:focus { border-color:var(--purple); box-shadow:0 0 0 3px rgba(127,119,221,0.18); }
+    .row { display:flex; gap:8px; }
+    .row input { flex:1; }
     button {
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      height: 42px; padding: 0 18px;
-      border: 0.5px solid var(--border2); border-radius: var(--r);
-      background: var(--bg); color: var(--text);
-      font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap;
-      transition: background 0.12s, opacity 0.12s, transform 0.1s;
+      display:inline-flex; align-items:center; justify-content:center; gap:6px;
+      height:42px; padding:0 18px; border:0.5px solid var(--border2); border-radius:var(--r);
+      background:var(--bg); color:var(--text); font-size:14px; font-weight:500;
+      cursor:pointer; white-space:nowrap; transition:background 0.12s,opacity 0.12s,transform 0.1s;
     }
-    button:hover { background: var(--bg2); }
-    button:active { transform: scale(0.98); }
-    button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
-    .btn-primary:hover { opacity: 0.85; background: var(--text); }
-    .btn-full { width: 100%; }
-    .btn-row { display: flex; gap: 8px; margin-top: 1rem; }
-    .btn-row button { flex: 1; }
-
-    .err { font-size: 13px; color: #b91c1c; margin-top: 8px; min-height: 18px; }
-
+    button:hover { background:var(--bg2); }
+    button:active { transform:scale(0.98); }
+    button:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+    .btn-primary { background:var(--text); color:var(--bg); border-color:var(--text); }
+    .btn-primary:hover { opacity:0.85; background:var(--text); }
+    .btn-full { width:100%; }
+    .btn-row { display:flex; gap:8px; margin-top:1rem; }
+    .btn-row button { flex:1; }
+    .err { font-size:13px; color:#b91c1c; margin-top:8px; min-height:18px; }
     .room-code-big {
-      display: inline-block; font-size: 32px; font-weight: 700; letter-spacing: 8px;
-      color: var(--purple-text); background: var(--purple-bg);
-      border-radius: var(--r); padding: 10px 20px; margin: 8px 0;
+      display:inline-block; font-size:32px; font-weight:700; letter-spacing:8px;
+      color:var(--purple-text); background:var(--purple-bg);
+      border-radius:var(--r); padding:10px 20px; margin:8px 0;
     }
-
     .link-row {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--bg2); border: 0.5px solid var(--border);
-      border-radius: var(--r); padding: 10px 14px; margin: 12px 0;
+      display:flex; align-items:center; gap:8px;
+      background:var(--bg2); border:0.5px solid var(--border);
+      border-radius:var(--r); padding:10px 14px; margin:12px 0;
     }
-    .link-url { flex: 1; font-size: 12px; color: var(--muted); word-break: break-all; }
-
+    .link-url { flex:1; font-size:12px; color:var(--muted); word-break:break-all; }
     .player-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 8px 0; border-bottom: 0.5px solid var(--border);
-      font-size: 14px; color: var(--text);
+      display:flex; align-items:center; gap:10px;
+      padding:8px 0; border-bottom:0.5px solid var(--border);
+      font-size:14px; color:var(--text);
     }
-    .player-row:last-child { border-bottom: none; }
-
+    .player-row:last-child { border-bottom:none; }
     .avatar {
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 600; flex-shrink: 0;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-weight:600; flex-shrink:0; background:var(--purple-bg); color:var(--purple-text);
     }
-    .avatar.sm { width: 32px; height: 32px; font-size: 12px; background: var(--purple-bg); color: var(--purple-text); }
-    .avatar.lg { width: 44px; height: 44px; font-size: 15px; background: var(--purple-bg); color: var(--purple-text); }
-
+    .avatar.sm { width:32px; height:32px; font-size:12px; }
     .waiting-pill {
-      text-align: center; font-size: 14px; color: var(--muted);
-      background: var(--bg2); border: 0.5px solid var(--border);
-      border-radius: 999px; padding: 10px 20px; margin-top: 12px;
+      text-align:center; font-size:14px; color:var(--muted);
+      background:var(--bg2); border:0.5px solid var(--border);
+      border-radius:999px; padding:10px 20px; margin-top:12px;
     }
-
-    .card-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 10px; margin: 1rem 0;
-    }
-
-    .name-card {
-      background: var(--bg); border: 0.5px solid var(--border);
-      border-radius: var(--rl); padding: 1rem 0.75rem;
-      text-align: center; display: flex; flex-direction: column;
-      align-items: center; gap: 6px;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .name-card-label { font-size: 13px; font-weight: 500; color: var(--text); }
-
-    .name-card.mine { border: 1.5px solid var(--purple); cursor: pointer; }
-    .name-card.mine:hover { background: var(--purple-bg); }
-    .name-card.mine .avatar.lg { background: var(--purple); color: white; }
-    .name-card.other { opacity: 0.5; }
-    .name-card.seen-card { border-color: var(--teal-border); }
-    .name-card.seen-card .avatar.lg { background: var(--teal-bg); color: var(--teal-text); }
-
-    .seen-tick {
-      font-size: 11px; font-weight: 600; color: var(--teal-text);
-      background: var(--teal-bg); border-radius: 999px; padding: 2px 8px;
-    }
-    .tap-hint { font-size: 11px; color: var(--purple-text); }
-
     .overlay-wrap {
-      position: fixed; inset: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      position:fixed; inset:0; z-index:100;
+      display:flex; align-items:center; justify-content:center; padding:1rem;
     }
-    .overlay-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
+    .overlay-bg { position:absolute; inset:0; background:rgba(0,0,0,0.6); }
     .overlay-card {
-      position: relative; z-index: 1;
-      background: var(--bg); border-radius: var(--rl);
-      padding: 2rem 1.5rem; width: 100%; max-width: 340px; text-align: center;
+      position:relative; z-index:1; background:var(--bg); border-radius:var(--rl);
+      padding:2rem 1.5rem; width:100%; max-width:340px; text-align:center;
     }
-    .overlay-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-    .overlay-word {
-      font-size: 40px; font-weight: 700; letter-spacing: -1px;
-      color: var(--text); line-height: 1.2; margin-bottom: 12px;
-    }
-    .overlay-word.imposter { color: #D85A30; }
-    .overlay-hint { font-size: 14px; color: var(--muted); line-height: 1.5; }
-
-    .seen-progress { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 10px; }
-
-    .result-banner {
-      border-radius: var(--rl); padding: 2rem 1.5rem;
-      text-align: center; margin-bottom: 1rem;
-    }
-    .result-banner.caught { background: var(--teal-bg); border: 0.5px solid var(--teal-border); }
-    .result-banner.escaped { background: var(--coral-bg); border: 0.5px solid var(--coral-border); }
-    .result-icon { font-size: 52px; margin-bottom: 10px; }
-    .result-h { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-    .caught .result-h { color: var(--teal-text); }
-    .escaped .result-h { color: var(--coral-text); }
-    .result-p { font-size: 14px; line-height: 1.6; }
-    .caught .result-p { color: var(--teal-text); }
-    .escaped .result-p { color: var(--coral-text); }
-
-    .word-reveal-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-      gap: 8px; margin-top: 10px;
-    }
-    .wrc { border-radius: var(--r); padding: 8px 10px; text-align: center; }
-    .wrc.regular { background: var(--teal-bg); border: 0.5px solid var(--teal-border); color: var(--teal-text); }
-    .wrc.imposter { background: var(--coral-bg); border: 0.5px solid var(--coral-border); color: var(--coral-text); }
-    .wrc-name { font-size: 12px; font-weight: 600; }
-    .wrc-word { font-size: 11px; margin-top: 3px; opacity: 0.85; }
-
-    .discuss-big { text-align: center; padding: 3rem 0 1.5rem; }
-    .discuss-big .icon { font-size: 64px; margin-bottom: 1rem; }
-
+    .overlay-label { font-size:13px; color:var(--muted); margin-bottom:8px; }
+    .overlay-word { font-size:40px; font-weight:700; letter-spacing:-1px; color:var(--text); line-height:1.2; margin-bottom:12px; }
+    .overlay-word.imposter { color:#D85A30; }
+    .overlay-hint { font-size:14px; color:var(--muted); line-height:1.5; }
+    .seen-progress { text-align:center; font-size:14px; color:var(--muted); margin:10px 0; }
+    .result-banner { border-radius:var(--rl); padding:2rem 1.5rem; text-align:center; margin-bottom:1rem; }
+    .result-banner.caught { background:var(--teal-bg); border:0.5px solid var(--teal-border); }
+    .result-banner.escaped { background:var(--coral-bg); border:0.5px solid var(--coral-border); }
+    .result-icon { font-size:52px; margin-bottom:10px; }
+    .result-h { font-size:24px; font-weight:700; margin-bottom:8px; }
+    .caught .result-h { color:var(--teal-text); }
+    .escaped .result-h { color:var(--coral-text); }
+    .result-p { font-size:14px; line-height:1.6; }
+    .caught .result-p { color:var(--teal-text); }
+    .escaped .result-p { color:var(--coral-text); }
+    .word-reveal-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:8px; margin-top:10px; }
+    .wrc { border-radius:var(--r); padding:8px 10px; text-align:center; }
+    .wrc.regular { background:var(--teal-bg); border:0.5px solid var(--teal-border); color:var(--teal-text); }
+    .wrc.imposter { background:var(--coral-bg); border:0.5px solid var(--coral-border); color:var(--coral-text); }
+    .wrc-name { font-size:12px; font-weight:600; }
+    .wrc-word { font-size:11px; margin-top:3px; opacity:0.85; }
     .or-divider {
-      text-align: center; font-size: 13px; color: var(--muted); margin: 1.25rem 0; position: relative;
+      text-align:center; font-size:13px; color:var(--muted); margin:1.25rem 0; position:relative;
     }
-    .or-divider::before, .or-divider::after {
-      content: ''; position: absolute; top: 50%; width: 42%; height: 0.5px; background: var(--border2);
-    }
-    .or-divider::before { left: 0; } .or-divider::after { right: 0; }
-
-    footer { text-align: center; margin-top: 2rem; font-size: 12px; color: var(--muted); }
+    .or-divider::before,.or-divider::after { content:''; position:absolute; top:50%; width:42%; height:0.5px; background:var(--border2); }
+    .or-divider::before { left:0; } .or-divider::after { right:0; }
+    footer { text-align:center; margin-top:2rem; font-size:12px; color:var(--muted); }
   </style>
 </head>
 <body>
 <div class="wrap">
-
   <div class="logo">
     <h1>QA Imposter 🕵️</h1>
     <p>one word · one imposter · find them</p>
@@ -223,7 +140,7 @@
 
   <!-- HOME -->
   <div id="s-home" class="screen active">
-    <button class="btn-primary btn-full" style="height:52px;font-size:16px" onclick="createRoom()">create a room</button>
+    <button class="btn-primary btn-full" style="height:52px;font-size:16px" onclick="createRoom()">create a room (host)</button>
     <div class="or-divider">or join with a code</div>
     <div class="row">
       <input type="text" id="join-code" placeholder="room code" maxlength="4"
@@ -233,7 +150,7 @@
     <p class="err" id="home-err"></p>
   </div>
 
-  <!-- NAME ENTRY -->
+  <!-- NAME ENTRY (players only) -->
   <div id="s-name" class="screen">
     <div class="bc">
       <h2>joining room</h2>
@@ -249,59 +166,43 @@
 
   <!-- LOBBY -->
   <div id="s-lobby" class="screen">
-    <div style="text-align:right;margin-bottom:4px">
-      <button onclick="leaveRoom()" style="height:32px;padding:0 12px;font-size:12px;color:var(--muted)">leave room</button>
-    </div>
     <div class="bc">
       <p>room code</p>
       <div class="room-code-big" id="lobby-code"></div>
     </div>
-
     <div class="link-row">
       <span class="link-url" id="lobby-link"></span>
       <button onclick="copyLink()" style="padding:0 12px;height:34px;font-size:13px">copy link</button>
     </div>
-
-    <div class="card" id="host-setup" style="display:none">
-      <div class="card-title">word pair for this round</div>
-      <select id="pair-select">
-        <option value="netflix|youtube">Round 1 — Netflix vs YouTube</option>
-        <option value="hotfix|patch">Round 2 — Hotfix vs Patch</option>
-      </select>
-    </div>
-
     <div class="card">
       <div class="card-title">players joined <span id="lobby-count"></span></div>
       <div id="lobby-players"><p style="color:var(--muted);font-size:14px">waiting for players to join...</p></div>
     </div>
-
-    <button class="btn-primary btn-full" id="start-btn" onclick="startGame()" style="display:none" disabled>
-      waiting for players (need 3+)
-    </button>
+    <!-- host buttons -->
+    <div id="host-btns" style="display:none">
+      <button class="btn-primary btn-full" id="start-r1" onclick="startRound(1)" disabled style="margin-bottom:8px">start round 1</button>
+      <button class="btn-full" id="start-r2" onclick="startRound(2)" disabled>start round 2</button>
+      <p id="need-more" style="text-align:center;font-size:13px;color:var(--muted);margin-top:8px"></p>
+    </div>
+    <!-- player waiting -->
     <div class="waiting-pill" id="guest-wait" style="display:none">waiting for host to start the game...</div>
   </div>
 
-  <!-- WORD SCREEN — safe to screenshare, no words shown -->
+  <!-- WORD SCREEN (safe to screenshare) -->
   <div id="s-word" class="screen">
     <div style="text-align:center;padding:3rem 0 2rem">
       <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">now playing</div>
       <div style="font-size:52px;font-weight:700;color:var(--text);letter-spacing:-1px" id="round-label">Round 1</div>
-      <p style="margin-top:12px;max-width:300px;margin-left:auto;margin-right:auto">open the link on your own device and tap the button to see your secret word</p>
+      <p style="margin-top:12px;max-width:300px;margin-left:auto;margin-right:auto">open the game link on your own device and tap the button to see your secret word</p>
     </div>
-
-    <button class="btn-primary btn-full" id="see-my-word-btn" onclick="revealWord()" style="font-size:16px;height:52px">
-      tap to see my word
-    </button>
-    <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:8px" id="already-seen-msg" style="display:none"></p>
-
+    <button class="btn-primary btn-full" id="see-word-btn" onclick="revealWord()" style="font-size:16px;height:52px">tap to see my word</button>
     <div class="card" style="margin-top:1.5rem;text-align:center">
-      <div class="seen-progress" id="seen-progress" style="margin:0"></div>
+      <div class="seen-progress" id="seen-progress"></div>
     </div>
-
-    <button class="btn-primary btn-full" id="word-reveal-btn" onclick="hostAdvance('reveal')" style="display:none;margin-top:1rem">
-      everyone has discussed → reveal the imposter
-    </button>
-    <div class="waiting-pill" id="word-guest-wait" style="display:none">discuss on the call · host will reveal the imposter when ready</div>
+    <!-- host only -->
+    <button class="btn-primary btn-full" id="do-reveal-btn" onclick="hostAdvance('reveal')" style="display:none;margin-top:1rem">everyone has discussed → reveal the imposter</button>
+    <!-- player only -->
+    <div class="waiting-pill" id="word-guest-wait" style="display:none">discuss on the call · host will reveal when ready</div>
 
     <!-- word overlay -->
     <div class="overlay-wrap" id="word-overlay" style="display:none">
@@ -315,76 +216,66 @@
     </div>
   </div>
 
-  <!-- REVEAL SCREEN -->
+  <!-- REVEAL -->
   <div id="s-reveal" class="screen">
     <div id="reveal-content"></div>
     <div class="btn-row">
-      <button id="play-again-btn" onclick="playAgain()" style="display:none">play again</button>
-      <div class="waiting-pill" id="reveal-guest-wait" style="display:none;flex:1">waiting for host to start next round...</div>
+      <button id="play-again-btn" onclick="goLobby()" style="display:none">back to lobby</button>
+      <div class="waiting-pill" id="reveal-guest-wait" style="display:none;flex:1">waiting for host...</div>
     </div>
   </div>
 
-  <footer>QA Imposter · open on any device · no app needed<br>
+  <footer>
+    QA Imposter · open on any device · no app needed<br>
     <button onclick="leaveRoom()" style="margin-top:10px;height:28px;padding:0 12px;font-size:12px;color:var(--muted);border-color:var(--border)">↩ leave &amp; start over</button>
   </footer>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
 <script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyC7WRXxLiSqWKuAIyUryThDHAhTACnUyFc",
-    authDomain: "qa-imposter.firebaseapp.com",
-    databaseURL: "https://qa-imposter-default-rtdb.firebaseio.com",
-    projectId: "qa-imposter",
-    storageBucket: "qa-imposter.firebasestorage.app",
-    messagingSenderId: "242195247753",
-    appId: "1:242195247753:web:7628b5d117a4a07d4e0c58",
-    measurementId: "G-TTJYFTHG1F"
-  };
-
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp({
+    apiKey:"AIzaSyC7WRXxLiSqWKuAIyUryThDHAhTACnUyFc",
+    authDomain:"qa-imposter.firebaseapp.com",
+    databaseURL:"https://qa-imposter-default-rtdb.firebaseio.com",
+    projectId:"qa-imposter",
+    storageBucket:"qa-imposter.firebasestorage.app",
+    messagingSenderId:"242195247753",
+    appId:"1:242195247753:web:7628b5d117a4a07d4e0c58"
+  });
   const db = firebase.database();
 
-  const PAIRS = {
-    'netflix|youtube': { main: 'Netflix', imp: 'YouTube' },
-    'hotfix|patch':    { main: 'Hotfix',  imp: 'Patch' },
+  const ROUNDS = {
+    1: { main:'Netflix', imp:'YouTube' },
+    2: { main:'Hotfix',  imp:'Patch'   }
   };
 
-  let roomCode = null, myName = null, myKey = null, isHost = false;
-  let gameRef = null, lastStatus = null;
+  let roomCode=null, myName=null, myKey=null, isHost=false, gameRef=null;
 
-  function toKey(n) { return n.toLowerCase().replace(/[^a-z0-9]/g,'_'); }
-  function initials(n) { return n.trim().split(/\s+/).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
-  function genCode() { const c='ABCDEFGHJKLMNPQRSTUVWXYZ'; return Array.from({length:4},()=>c[Math.floor(Math.random()*c.length)]).join(''); }
-  function show(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
-  function setErr(id,msg) { const e=document.getElementById(id); if(e) e.textContent=msg; }
-  function clrErr(id) { const e=document.getElementById(id); if(e) e.textContent=''; }
-  function sorted(players) { return Object.values(players||{}).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
-  function ls(k,v) { if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
-
-  function leaveRoom() {
-    if(gameRef) gameRef.off();
-    ['qi_room','qi_name','qi_key','qi_host'].forEach(k=>localStorage.removeItem(k));
-    roomCode=null; myName=null; myKey=null; isHost=false; lastStatus=null;
-    history.replaceState(null,'',location.pathname);
-    show('s-home');
-  }
+  function toKey(n){ return n.toLowerCase().replace(/[^a-z0-9]/g,'_'); }
+  function initials(n){ return n.trim().split(/\s+/).map(w=>w[0]).join('').toUpperCase().slice(0,2); }
+  function genCode(){ const c='ABCDEFGHJKLMNPQRSTUVWXYZ'; return Array.from({length:4},()=>c[Math.floor(Math.random()*c.length)]).join(''); }
+  function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+  function setErr(id,msg){ const e=document.getElementById(id); if(e) e.textContent=msg; }
+  function clrErr(id){ const e=document.getElementById(id); if(e) e.textContent=''; }
+  function sorted(p){ return Object.values(p||{}).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
+  function ls(k,v){ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
 
   // ── HOME ──
-  function createRoom() {
-    roomCode=genCode(); isHost=true;
+  function createRoom(){
+    roomCode=genCode(); isHost=true; myName=null; myKey=null;
     ls('qi_room',roomCode); ls('qi_host','true');
-    document.getElementById('name-room-display').textContent=roomCode;
-    show('s-name');
+    ls('qi_name',''); ls('qi_key','');
+    // create room in Firebase
+    db.ref(`rooms/${roomCode}`).set({ status:'lobby', hostOnly:true, createdAt:firebase.database.ServerValue.TIMESTAMP });
+    attachListener();
   }
 
-  function joinRoom() {
+  function joinRoom(){
     const code=document.getElementById('join-code').value.trim().toUpperCase();
-    if(code.length!==4){setErr('home-err','enter a 4-letter room code');return;}
+    if(code.length!==4){ setErr('home-err','enter a 4-letter room code'); return; }
     db.ref(`rooms/${code}`).once('value').then(snap=>{
-      if(!snap.exists()){setErr('home-err','room not found');return;}
+      if(!snap.exists()){ setErr('home-err','room not found'); return; }
       roomCode=code; isHost=false;
       ls('qi_room',code); ls('qi_host','false');
       document.getElementById('name-room-display').textContent=code;
@@ -392,64 +283,62 @@
     });
   }
 
-  document.getElementById('join-code').addEventListener('input',function(){this.value=this.value.toUpperCase();});
-  document.getElementById('join-code').addEventListener('keydown',e=>{if(e.key==='Enter')joinRoom();});
-  document.getElementById('name-input').addEventListener('keydown',e=>{if(e.key==='Enter')joinLobby();});
+  document.getElementById('join-code').addEventListener('input',function(){ this.value=this.value.toUpperCase(); });
+  document.getElementById('join-code').addEventListener('keydown',e=>{ if(e.key==='Enter') joinRoom(); });
+  document.getElementById('name-input').addEventListener('keydown',e=>{ if(e.key==='Enter') joinLobby(); });
 
-  // ── JOIN LOBBY ──
-  function joinLobby() {
+  // ── JOIN LOBBY (players) ──
+  function joinLobby(){
     const name=document.getElementById('name-input').value.trim();
-    if(!name){setErr('name-err','enter your name');return;}
+    if(!name){ setErr('name-err','enter your name'); return; }
     const key=toKey(name);
     db.ref(`rooms/${roomCode}/players/${key}`).once('value').then(snap=>{
-      if(snap.exists()){setErr('name-err','name taken — try a different one');return;}
+      if(snap.exists()){ setErr('name-err','name taken — try a different one'); return; }
       myName=name; myKey=key;
       ls('qi_name',name); ls('qi_key',key);
-      const writes={};
-      writes[`rooms/${roomCode}/players/${key}`]={displayName:name,seenWord:false,joinedAt:firebase.database.ServerValue.TIMESTAMP};
-      if(isHost){writes[`rooms/${roomCode}/status`]='lobby';writes[`rooms/${roomCode}/hostKey`]=key;writes[`rooms/${roomCode}/createdAt`]=firebase.database.ServerValue.TIMESTAMP;}
-      db.ref().update(writes).then(()=>attachListener());
+      db.ref(`rooms/${roomCode}/players/${key}`).set({
+        displayName:name, seenWord:false,
+        joinedAt:firebase.database.ServerValue.TIMESTAMP
+      }).then(()=>attachListener());
     });
   }
 
   // ── LOBBY ──
-  function renderLobby(data) {
-    const players=sorted(data.players); const count=players.length;
+  function renderLobby(data){
+    const players=sorted(data.players);
+    const count=players.length;
     const link=`${location.origin}${location.pathname}#${roomCode}`;
     document.getElementById('lobby-code').textContent=roomCode;
     document.getElementById('lobby-link').textContent=link;
     document.getElementById('lobby-count').textContent=`(${count})`;
-    document.getElementById('lobby-players').innerHTML=players.length
+    document.getElementById('lobby-players').innerHTML=count
       ? players.map(p=>`<div class="player-row"><div class="avatar sm">${initials(p.displayName)}</div><span>${p.displayName}</span></div>`).join('')
-      : '<p style="color:var(--muted);font-size:14px">no one yet...</p>';
+      : '<p style="color:var(--muted);font-size:14px">waiting for players to join...</p>';
     if(isHost){
-      document.getElementById('host-setup').style.display='block';
+      document.getElementById('host-btns').style.display='block';
       document.getElementById('guest-wait').style.display='none';
-      const btn=document.getElementById('start-btn');
-      btn.style.display='block';
-      btn.disabled=count<3;
-      btn.textContent=count<3?`waiting for players (${count} joined, need 3+)`:`start game — ${count} players`;
+      const ready=count>=3;
+      document.getElementById('start-r1').disabled=!ready;
+      document.getElementById('start-r2').disabled=!ready;
+      document.getElementById('need-more').textContent=ready?'':`need at least 3 players (${count} joined)`;
     } else {
-      document.getElementById('host-setup').style.display='none';
+      document.getElementById('host-btns').style.display='none';
       document.getElementById('guest-wait').style.display='block';
-      document.getElementById('start-btn').style.display='none';
     }
     show('s-lobby');
   }
 
-  function copyLink() {
-    const link=`${location.origin}${location.pathname}#${roomCode}`;
-    navigator.clipboard.writeText(link).catch(()=>{});
+  function copyLink(){
+    navigator.clipboard.writeText(`${location.origin}${location.pathname}#${roomCode}`).catch(()=>{});
   }
 
-  // ── START GAME ──
-  function startGame() {
-    const pairKey=document.getElementById('pair-select').value;
-    const pair=PAIRS[pairKey];
-    db.ref(`rooms/${roomCode}`).once('value').then(snap=>{
-      const room=snap.val()||{};
-      const players=room.players||{};
+  // ── START ROUND ──
+  function startRound(roundNum){
+    const pair=ROUNDS[roundNum];
+    db.ref(`rooms/${roomCode}/players`).once('value').then(snap=>{
+      const players=snap.val()||{};
       const keys=Object.keys(players);
+      if(!keys.length) return;
       const impKey=keys[Math.floor(Math.random()*keys.length)];
       const updates={};
       keys.forEach(k=>{
@@ -457,47 +346,42 @@
         updates[`rooms/${roomCode}/players/${k}/seenWord`]=false;
       });
       updates[`rooms/${roomCode}/status`]='word';
+      updates[`rooms/${roomCode}/roundNumber`]=roundNum;
       updates[`rooms/${roomCode}/mainWord`]=pair.main;
       updates[`rooms/${roomCode}/impWord`]=pair.imp;
       updates[`rooms/${roomCode}/impName`]=players[impKey].displayName;
       updates[`rooms/${roomCode}/impKey`]=impKey;
-      updates[`rooms/${roomCode}/roundNumber`]=(room.roundNumber||0)+1;
       db.ref().update(updates);
     });
   }
 
   // ── WORD SCREEN ──
-  function renderWordScreen(data) {
-    const players = sorted(data.players);
-    const seenCount = players.filter(p => p.seenWord).length;
-    const total = players.length;
-    const roundNum = data.roundNumber || 1;
-    const myPlayer = data.players?.[myKey];
-    const alreadySeen = myPlayer?.seenWord;
+  function renderWordScreen(data){
+    const players=sorted(data.players);
+    const seenCount=players.filter(p=>p.seenWord).length;
+    const total=players.length;
+    document.getElementById('round-label').textContent=`Round ${data.roundNumber||1}`;
+    document.getElementById('seen-progress').textContent=`${seenCount} of ${total} have seen their word`;
 
-    document.getElementById('round-label').textContent = `Round ${roundNum}`;
-    document.getElementById('seen-progress').textContent = `${seenCount} of ${total} have seen their word`;
+    const myPlayer=data.players?.[myKey];
+    const alreadySeen=myPlayer?.seenWord;
+    const seeBtn=document.getElementById('see-word-btn');
 
-    const seeBtn = document.getElementById('see-my-word-btn');
-    const seenMsg = document.getElementById('already-seen-msg');
-    if (alreadySeen) {
-      seeBtn.textContent = 'see my word again';
-      seeBtn.style.opacity = '0.6';
+    if(isHost){
+      // host doesn't play — hide the see-word button
+      seeBtn.style.display='none';
+      document.getElementById('do-reveal-btn').style.display='block';
+      document.getElementById('word-guest-wait').style.display='none';
     } else {
-      seeBtn.textContent = 'tap to see my word';
-      seeBtn.style.opacity = '1';
-    }
-
-    if (isHost) {
-      document.getElementById('word-reveal-btn').style.display = 'block';
-      document.getElementById('word-guest-wait').style.display = 'none';
-    } else {
-      document.getElementById('word-reveal-btn').style.display = 'none';
-      document.getElementById('word-guest-wait').style.display = 'block';
+      seeBtn.style.display='block';
+      seeBtn.textContent=alreadySeen?'see my word again':'tap to see my word';
+      seeBtn.style.opacity=alreadySeen?'0.7':'1';
+      document.getElementById('do-reveal-btn').style.display='none';
+      document.getElementById('word-guest-wait').style.display='block';
     }
   }
 
-  function revealWord() {
+  function revealWord(){
     db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap=>{
       const player=snap.val(); if(!player) return;
       db.ref(`rooms/${roomCode}/impKey`).once('value').then(impSnap=>{
@@ -514,15 +398,14 @@
     });
   }
 
-  function closeOverlay() { document.getElementById('word-overlay').style.display='none'; }
+  function closeOverlay(){ document.getElementById('word-overlay').style.display='none'; }
 
-  // ── HOST ADVANCE ──
-  function hostAdvance(nextStatus) { db.ref(`rooms/${roomCode}/status`).set(nextStatus); }
+  function hostAdvance(s){ db.ref(`rooms/${roomCode}/status`).set(s); }
 
-  // ── REVEAL SCREEN ──
-  function renderReveal(data) {
+  // ── REVEAL ──
+  function renderReveal(data){
     const players=sorted(data.players);
-    const wordChips=players.map(p=>{
+    const chips=players.map(p=>{
       const isImp=toKey(p.displayName)===data.impKey;
       return `<div class="wrc ${isImp?'imposter':'regular'}">
         <div class="wrc-name">${p.displayName}</div>
@@ -531,15 +414,15 @@
     }).join('');
 
     document.getElementById('reveal-content').innerHTML=`
-      <div class="result-banner escaped" style="background:var(--coral-bg);border-color:var(--coral-border)">
+      <div class="result-banner escaped">
         <div class="result-icon">😈</div>
         <div class="result-h" style="color:var(--coral-text)">the imposter was...</div>
-        <div style="font-size:32px;font-weight:700;color:var(--coral-text);margin:8px 0">${data.impName}</div>
-        <div class="result-p" style="color:var(--coral-text)">Their word was "<strong>${data.impWord}</strong>" while everyone else had "<strong>${data.mainWord}</strong>"</div>
+        <div style="font-size:34px;font-weight:700;color:var(--coral-text);margin:8px 0">${data.impName}</div>
+        <div class="result-p" style="color:var(--coral-text)">Their word was "<strong>${data.impWord}</strong>" · everyone else had "<strong>${data.mainWord}</strong>"</div>
       </div>
       <div class="card">
         <div class="card-title">everyone's words</div>
-        <div class="word-reveal-grid">${wordChips}</div>
+        <div class="word-reveal-grid">${chips}</div>
       </div>`;
 
     if(isHost){
@@ -551,8 +434,8 @@
     }
   }
 
-  // ── PLAY AGAIN ──
-  function playAgain() {
+  function goLobby(){
+    // reset player words for next round
     db.ref(`rooms/${roomCode}/players`).once('value').then(snap=>{
       const players=snap.val()||{};
       const updates={};
@@ -569,14 +452,13 @@
     });
   }
 
-  // ── REAL-TIME LISTENER ──
-  function attachListener() {
+  // ── LISTENER ──
+  function attachListener(){
     if(gameRef) gameRef.off();
     gameRef=db.ref(`rooms/${roomCode}`);
     gameRef.on('value',snap=>{
       const data=snap.val(); if(!data) return;
-      const status=data.status;
-      switch(status){
+      switch(data.status){
         case 'lobby':  renderLobby(data); break;
         case 'word':   show('s-word'); renderWordScreen(data); break;
         case 'reveal': show('s-reveal'); renderReveal(data); break;
@@ -584,22 +466,35 @@
     });
   }
 
-  // ── SESSION RESTORE / URL HASH ──
+  function leaveRoom(){
+    if(gameRef) gameRef.off();
+    ['qi_room','qi_name','qi_key','qi_host'].forEach(k=>localStorage.removeItem(k));
+    roomCode=null; myName=null; myKey=null; isHost=false;
+    history.replaceState(null,'',location.pathname);
+    show('s-home');
+  }
+
+  // ── INIT ──
   window.addEventListener('load',()=>{
     const hash=location.hash.slice(1).toUpperCase();
-    const savedRoom=ls('qi_room'), savedName=ls('qi_name');
-    const savedKey=ls('qi_key'), savedHost=ls('qi_host');
+    const savedRoom=ls('qi_room'), savedKey=ls('qi_key'), savedHost=ls('qi_host');
 
     if(hash && /^[A-Z]{4}$/.test(hash)){
+      // joining via shared link
       roomCode=hash; isHost=false;
       ls('qi_room',hash); ls('qi_host','false');
       document.getElementById('name-room-display').textContent=hash;
       show('s-name');
-    } else if(savedRoom && savedName && savedKey){
-      roomCode=savedRoom; myName=savedName; myKey=savedKey; isHost=savedHost==='true';
+    } else if(savedRoom && savedHost==='true'){
+      // restore host session
+      roomCode=savedRoom; isHost=true; myKey=null; myName=null;
+      attachListener();
+    } else if(savedRoom && savedKey){
+      // restore player session
+      roomCode=savedRoom; myKey=savedKey; myName=ls('qi_name'); isHost=false;
       db.ref(`rooms/${roomCode}/players/${myKey}`).once('value').then(snap=>{
         if(snap.exists()) attachListener();
-        else { ['qi_room','qi_name','qi_key','qi_host'].forEach(k=>localStorage.removeItem(k)); show('s-home'); }
+        else leaveRoom();
       });
     }
   });
