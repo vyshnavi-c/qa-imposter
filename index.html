@@ -283,17 +283,33 @@
 
   <!-- WORD SCREEN -->
   <div id="s-word" class="screen">
-    <div class="bc">
-      <h2>tap your name to see your word</h2>
-      <p>your word is private — don't show anyone!</p>
-    </div>
-    <div class="card-grid" id="word-cards"></div>
-    <div class="seen-progress" id="seen-progress"></div>
 
-    <button class="btn-primary btn-full" id="word-reveal-btn" onclick="hostAdvance('reveal')" style="display:none">
-      everyone has discussed → reveal the imposter
-    </button>
-    <div class="waiting-pill" id="word-guest-wait" style="display:none">discuss on the call · host will reveal the imposter when ready</div>
+    <!-- HOST VIEW: clean screen safe to screenshare -->
+    <div id="host-word-view" style="display:none">
+      <div style="text-align:center;padding:3rem 0 2rem">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">now playing</div>
+        <div style="font-size:48px;font-weight:700;color:var(--text);letter-spacing:-1px" id="round-label">Round 1</div>
+        <p style="margin-top:12px">everyone — open the link on your own device and tap your name to see your word</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="seen-progress" id="seen-progress" style="margin:0"></div>
+      </div>
+      <button class="btn-primary btn-full" id="word-reveal-btn" onclick="hostAdvance('reveal')" style="display:none;margin-top:1rem">
+        everyone has discussed → reveal the imposter
+      </button>
+    </div>
+
+    <!-- PLAYER VIEW: tap your card -->
+    <div id="player-word-view" style="display:none">
+      <div class="bc">
+        <div style="font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">now playing</div>
+        <h2 id="round-label-player">Round 1</h2>
+        <p style="margin-top:6px">tap your name card to see your secret word</p>
+      </div>
+      <div class="card-grid" id="word-cards"></div>
+      <div class="seen-progress" id="seen-progress-player"></div>
+      <div class="waiting-pill" id="word-guest-wait">discuss on the call · host will reveal the imposter when ready</div>
+    </div>
 
     <!-- word overlay -->
     <div class="overlay-wrap" id="word-overlay" style="display:none">
@@ -438,8 +454,9 @@
   function startGame() {
     const pairKey=document.getElementById('pair-select').value;
     const pair=PAIRS[pairKey];
-    db.ref(`rooms/${roomCode}/players`).once('value').then(snap=>{
-      const players=snap.val()||{};
+    db.ref(`rooms/${roomCode}`).once('value').then(snap=>{
+      const room=snap.val()||{};
+      const players=room.players||{};
       const keys=Object.keys(players);
       const impKey=keys[Math.floor(Math.random()*keys.length)];
       const updates={};
@@ -452,6 +469,7 @@
       updates[`rooms/${roomCode}/impWord`]=pair.imp;
       updates[`rooms/${roomCode}/impName`]=players[impKey].displayName;
       updates[`rooms/${roomCode}/impKey`]=impKey;
+      updates[`rooms/${roomCode}/roundNumber`]=(room.roundNumber||0)+1;
       db.ref().update(updates);
     });
   }
@@ -461,31 +479,35 @@
     const players=sorted(data.players);
     const seenCount=players.filter(p=>p.seenWord).length;
     const total=players.length;
-
-    document.getElementById('word-cards').innerHTML=players.map(p=>{
-      const key=toKey(p.displayName);
-      const isMe=key===myKey;
-      const seen=p.seenWord;
-      if(isMe) return `<div class="name-card mine ${seen?'seen-card':''}" onclick="${!seen?'revealWord()':''}">
-        <div class="avatar lg">${initials(p.displayName)}</div>
-        <div class="name-card-label">${p.displayName}</div>
-        ${seen?'<div class="seen-tick">seen ✓</div>':'<div class="tap-hint">tap me</div>'}
-      </div>`;
-      return `<div class="name-card other">
-        <div class="avatar lg">${initials(p.displayName)}</div>
-        <div class="name-card-label">${p.displayName}</div>
-        ${seen?'<div class="seen-tick">seen ✓</div>':'<div style="font-size:16px">🔒</div>'}
-      </div>`;
-    }).join('');
-
-    document.getElementById('seen-progress').textContent=`${seenCount} of ${total} have seen their word`;
+    const roundNum=data.roundNumber||1;
 
     if(isHost){
+      document.getElementById('host-word-view').style.display='block';
+      document.getElementById('player-word-view').style.display='none';
+      document.getElementById('round-label').textContent=`Round ${roundNum}`;
+      document.getElementById('seen-progress').textContent=`${seenCount} of ${total} have seen their word`;
       document.getElementById('word-reveal-btn').style.display='block';
-      document.getElementById('word-guest-wait').style.display='none';
     } else {
-      document.getElementById('word-reveal-btn').style.display='none';
-      document.getElementById('word-guest-wait').style.display='block';
+      document.getElementById('host-word-view').style.display='none';
+      document.getElementById('player-word-view').style.display='block';
+      document.getElementById('round-label-player').textContent=`Round ${roundNum}`;
+      document.getElementById('seen-progress-player').textContent=`${seenCount} of ${total} have seen their word`;
+
+      document.getElementById('word-cards').innerHTML=players.map(p=>{
+        const key=toKey(p.displayName);
+        const isMe=key===myKey;
+        const seen=p.seenWord;
+        if(isMe) return `<div class="name-card mine ${seen?'seen-card':''}" onclick="${!seen?'revealWord()':''}">
+          <div class="avatar lg">${initials(p.displayName)}</div>
+          <div class="name-card-label">${p.displayName}</div>
+          ${seen?'<div class="seen-tick">seen ✓</div>':'<div class="tap-hint">tap me</div>'}
+        </div>`;
+        return `<div class="name-card other">
+          <div class="avatar lg">${initials(p.displayName)}</div>
+          <div class="name-card-label">${p.displayName}</div>
+          ${seen?'<div class="seen-tick">seen ✓</div>':'<div style="font-size:16px">🔒</div>'}
+        </div>`;
+      }).join('');
     }
   }
 
