@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QA Imposter</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f5f5f3;
+      --bg-tertiary: #eeece8;
+      --text: #1a1a18;
+      --text-secondary: #6b6b67;
+      --border: rgba(0,0,0,0.12);
+      --border-strong: rgba(0,0,0,0.25);
+      --purple-bg: #EEEDFE;
+      --purple-text: #3C3489;
+      --purple-mid: #7F77DD;
+      --teal-bg: #E1F5EE;
+      --teal-text: #085041;
+      --teal-mid: #1D9E75;
+      --coral-bg: #FAECE7;
+      --coral-text: #712B13;
+      --coral-mid: #D85A30;
+      --green-bg: #EAF3DE;
+      --green-text: #27500A;
+      --amber-bg: #FAEEDA;
+      --amber-text: #633806;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18;
+        --bg-secondary: #252523;
+        --bg-tertiary: #2e2e2b;
+        --text: #f0ede8;
+        --text-secondary: #9a9994;
+        --border: rgba(255,255,255,0.1);
+        --border-strong: rgba(255,255,255,0.22);
+        --purple-bg: #26215C;
+        --purple-text: #CECBF6;
+        --purple-mid: #7F77DD;
+        --teal-bg: #04342C;
+        --teal-text: #9FE1CB;
+        --teal-mid: #1D9E75;
+        --coral-bg: #4A1B0C;
+        --coral-text: #F5C4B3;
+        --coral-mid: #D85A30;
+        --green-bg: #173404;
+        --green-text: #C0DD97;
+        --amber-bg: #412402;
+        --amber-text: #FAC775;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-tertiary);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-top: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    .logo .tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      height: 40px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      padding: 0 12px;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="text"]:focus, select:focus {
+      border-color: var(--purple-mid);
+      box-shadow: 0 0 0 3px rgba(127,119,221,0.15);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b6b67' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .input-row input { flex: 1; }
+
+    btn, button, .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      height: 40px;
+      padding: 0 18px;
+      border: 0.5px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.12s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    button:hover { background: var(--bg-secondary); }
+    button:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    .btn-primary:hover { opacity: 0.85; background: var(--text); }
+
+    .btn-full { width: 100%; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; min-height: 36px; margin-top: 10px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .chip-remove {
+      background: none;
+      border: none;
+      height: auto;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .chip-remove:hover { color: var(--text); background: none; }
+
+    .err {
+      font-size: 13px;
+      color: #A32D2D;
+      margin-top: 6px;
+      min-height: 18px;
+    }
+
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .big-center { text-align: center; padding: 2rem 0 1rem; }
+    .big-center h2 { font-size: 22px; font-weight: 600; color: var(--text); }
+    .big-center p { font-size: 14px; color: var(--text-secondary); margin-top: 6px; line-height: 1.6; }
+
+    .progress-bar {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .pdot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--border-strong);
+      transition: background 0.2s;
+    }
+
+    .pdot.done { background: var(--purple-mid); }
+    .pdot.current { background: var(--text); }
+
+    .tap-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      margin: 1rem 0;
+      transition: background 0.15s;
+    }
+
+    .tap-card:hover { background: var(--bg-tertiary); }
+
+    .tap-icon {
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .tap-label {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .word-reveal {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .word-player { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+
+    .word-shown {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .word-shown.imposter-word { color: var(--coral-mid); }
+
+    .word-hint { font-size: 12px; color: var(--text-secondary); margin-top: 12px; }
+
+    .topic-box {
+      background: var(--purple-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .topic-label { font-size: 13px; color: var(--purple-text); opacity: 0.8; }
+    .topic-word { font-size: 26px; font-weight: 600; color: var(--purple-text); margin: 4px 0; }
+    .topic-sub { font-size: 12px; color: var(--purple-text); opacity: 0.7; }
+
+    .rules-list {
+      list-style: none;
+      counter-reset: rules;
+    }
+
+    .rules-list li {
+      counter-increment: rules;
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .rules-list li::before {
+      content: counter(rules);
+      background: var(--purple-bg);
+      color: var(--purple-text);
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .vote-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 10px;
+      margin: 1rem 0;
+    }
+
+    .vote-btn {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      height: auto;
+      width: 100%;
+      transition: border-color 0.15s, background 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vote-btn:hover { background: var(--bg-secondary); }
+
+    .vote-btn.selected {
+      border: 2px solid var(--purple-mid);
+      background: var(--purple-bg);
+      color: var(--purple-text);
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .vote-btn.selected .avatar {
+      background: var(--purple-mid);
+      color: white;
+    }
+
+    .result-banner {
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .result-banner.caught {
+      background: var(--teal-bg);
+      border: 0.5px solid var(--teal-mid);
+    }
+
+    .result-banner.escaped {
+      background: var(--coral-bg);
+      border: 0.5px solid var(--coral-mid);
+    }
+
+    .result-icon { font-size: 40px; margin-bottom: 8px; }
+    .result-title { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+    .caught .result-title { color: var(--teal-text); }
+    .escaped .result-title { color: var(--coral-text); }
+    .result-desc { font-size: 14px; line-height: 1.5; }
+    .caught .result-desc { color: var(--teal-text); }
+    .escaped .result-desc { color: var(--coral-text); }
+
+    .all-words-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .word-chip {
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .word-chip.regular { background: var(--green-bg); color: var(--green-text); border: 0.5px solid var(--teal-mid); }
+    .word-chip.imposter { background: var(--coral-bg); color: var(--coral-text); border: 0.5px solid var(--coral-mid); }
+
+    .word-chip .wc-name { font-weight: 500; margin-bottom: 3px; }
+    .word-chip .wc-word { font-size: 11px; opacity: 0.85; }
+
+    .btn-row { display: flex; gap: 10px; margin-top: 1rem; }
+    .btn-row button { flex: 1; }
+
+    .scoreboard {
+      margin-top: 1rem;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 0.5px solid var(--border);
+      font-size: 14px;
+    }
+
+    .score-row:last-child { border-bottom: none; }
+
+    .score-name { color: var(--text); font-weight: 500; }
+    .score-val { color: var(--text-secondary); }
+    .score-val.high { color: var(--purple-text); font-weight: 500; }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div class="logo">
+    <h1>QA Imposter</h1>
+    <p class="tagline">one imposter, one different word — can the team find them?</p>
+  </div>
+
+  <!-- SETUP SCREEN -->
+  <div id="screen-setup" class="screen active">
+    <div class="card">
+      <div class="card-title">game settings</div>
+      <label for="cat-select">word category</label>
+      <select id="cat-select">
+        <option value="random">random mix</option>
+        <option value="testing">testing concepts</option>
+        <option value="tools">tools & environments</option>
+        <option value="process">process & workflow</option>
+        <option value="bugs">bugs & defects</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <div class="card-title">players <span id="player-count" style="font-weight:400;color:var(--text-secondary);font-size:13px">(0 / 12)</span></div>
+      <label for="pname-input">add player name</label>
+      <div class="input-row">
+        <input type="text" id="pname-input" placeholder="e.g. Vyshnavi" maxlength="20" autocomplete="off" />
+        <button onclick="addPlayer()">add</button>
+      </div>
+      <div class="chips" id="chips"></div>
+      <p class="err" id="setup-err"></p>
+    </div>
+
+    <button class="btn-primary btn-full" onclick="startGame()">start game</button>
+  </div>
+
+  <!-- DEALING SCREEN -->
+  <div id="screen-deal" class="screen">
+    <div class="big-center">
+      <h2 id="deal-heading">player 1's turn</h2>
+      <p>pass the device to this player — they tap to see their secret word privately</p>
+    </div>
+    <div class="progress-bar" id="deal-dots"></div>
+
+    <div class="tap-card" id="tap-area" onclick="revealWord()">
+      <div class="tap-icon">🤫</div>
+      <div class="tap-label">tap to reveal your word</div>
+    </div>
+
+    <div class="word-reveal" id="word-reveal" style="display:none">
+      <div class="word-player" id="reveal-player-name"></div>
+      <div class="word-shown" id="reveal-word-text"></div>
+      <div class="word-hint" id="reveal-hint"></div>
+      <button class="btn-primary btn-full" style="margin-top:1.25rem" onclick="nextPlayer()">done — pass it on</button>
+    </div>
+  </div>
+
+  <!-- DISCUSS SCREEN -->
+  <div id="screen-discuss" class="screen">
+    <div class="big-center">
+      <h2>discuss!</h2>
+      <p>go around the table — each player gives one clue about their word.<br>no saying the word itself.</p>
+    </div>
+
+    <div class="topic-box">
+      <div class="topic-label">the real word is about</div>
+      <div class="topic-word" id="topic-word"></div>
+      <div class="topic-sub">...but one player has a different word</div>
+    </div>
+
+    <div class="card">
+      <ul class="rules-list">
+        <li>Each player gives exactly <strong>one</strong> clue about their word</li>
+        <li>You cannot say the word or any part of it</li>
+        <li>The imposter doesn't know the real word — they'll try to bluff</li>
+        <li>After all clues, vote for who you think the imposter is</li>
+      </ul>
+    </div>
+
+    <button class="btn-primary btn-full" onclick="goVote()">ready to vote</button>
+  </div>
+
+  <!-- VOTING SCREEN -->
+  <div id="screen-vote" class="screen">
+    <div class="big-center">
+      <h2>cast your vote</h2>
+      <p>who do you think is the imposter?</p>
+    </div>
+
+    <div class="vote-grid" id="vote-grid"></div>
+
+    <p class="err" id="vote-err"></p>
+    <button class="btn-primary btn-full" onclick="revealResult()">reveal the imposter</button>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="screen-result" class="screen">
+    <div id="result-banner"></div>
+
+    <div class="card">
+      <div class="card-title">everyone's words</div>
+      <div class="all-words-grid" id="all-words-grid"></div>
+    </div>
+
+    <div class="card" id="scoreboard-card">
+      <div class="card-title">scoreboard</div>
+      <div class="scoreboard" id="scoreboard"></div>
+    </div>
+
+    <div class="btn-row">
+      <button onclick="playAgain()">play again</button>
+      <button class="btn-primary" onclick="newGame()">new game</button>
+    </div>
+  </div>
+
+  <footer>QA Imposter &mdash; made for the QA team</footer>
+</div>
+
+<script>
+const WORD_PAIRS = {
+  testing: [
+    {main:'regression testing', imposter:'smoke testing'},
+    {main:'unit test', imposter:'integration test'},
+    {main:'test case', imposter:'test suite'},
+    {main:'boundary value', imposter:'equivalence partition'},
+    {main:'flaky test', imposter:'false positive'},
+    {main:'exploratory testing', imposter:'scripted testing'},
+    {main:'acceptance testing', imposter:'usability testing'},
+    {main:'load testing', imposter:'stress testing'},
+    {main:'sanity check', imposter:'smoke test'},
+    {main:'manual testing', imposter:'automated testing'},
+  ],
+  tools: [
+    {main:'Selenium', imposter:'Cypress'},
+    {main:'Jira', imposter:'Linear'},
+    {main:'Postman', imposter:'Insomnia'},
+    {main:'Jenkins', imposter:'GitHub Actions'},
+    {main:'BrowserStack', imposter:'Sauce Labs'},
+    {main:'Charles Proxy', imposter:'Fiddler'},
+    {main:'TestRail', imposter:'Zephyr'},
+    {main:'Appium', imposter:'XCTest'},
+    {main:'Playwright', imposter:'Puppeteer'},
+    {main:'k6', imposter:'JMeter'},
+  ],
+  process: [
+    {main:'sprint review', imposter:'retrospective'},
+    {main:'shift left', imposter:'continuous testing'},
+    {main:'bug triage', imposter:'defect prioritisation'},
+    {main:'test plan', imposter:'test strategy'},
+    {main:'CI/CD pipeline', imposter:'deployment pipeline'},
+    {main:'pair testing', imposter:'mob testing'},
+    {main:'test debt', imposter:'technical debt'},
+    {main:'release candidate', imposter:'feature freeze'},
+    {main:'definition of done', imposter:'acceptance criteria'},
+    {main:'test coverage', imposter:'code coverage'},
+  ],
+  bugs: [
+    {main:'race condition', imposter:'deadlock'},
+    {main:'memory leak', imposter:'buffer overflow'},
+    {main:'critical bug', imposter:'blocker bug'},
+    {main:'hotfix', imposter:'patch release'},
+    {main:'root cause analysis', imposter:'post-mortem'},
+    {main:'severity', imposter:'priority'},
+    {main:'reproduction steps', imposter:'stack trace'},
+    {main:'known issue', imposter:'wont fix'},
+    {main:'regression', imposter:'side effect'},
+    {main:'null pointer exception', imposter:'index out of bounds'},
+  ]
+};
+
+const ALL_PAIRS = Object.values(WORD_PAIRS).flat();
+
+let players = [];
+let imposterIdx = -1;
+let mainWord = '';
+let imposterWord = '';
+let currentDealIdx = 0;
+let selectedVote = null;
+let scores = {};
+let usedPairs = new Set();
+
+let seed = Date.now();
+function rand() {
+  seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
+  return (seed >>> 0) / 0xffffffff;
+}
+
+function initials(name) {
+  return name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function addPlayer() {
+  const inp = document.getElementById('pname-input');
+  const name = inp.value.trim();
+  if (!name) return;
+  if (players.find(p => p.toLowerCase() === name.toLowerCase())) {
+    showErr('setup-err', 'name already added'); return;
+  }
+  if (players.length >= 12) { showErr('setup-err', 'max 12 players'); return; }
+  players.push(name);
+  if (!scores[name]) scores[name] = 0;
+  inp.value = '';
+  clearErr('setup-err');
+  renderChips();
+  renderScoreboard();
+}
+
+document.getElementById('pname-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addPlayer();
+});
+
+function removePlayer(i) {
+  const name = players[i];
+  players.splice(i, 1);
+  renderChips();
+}
+
+function renderChips() {
+  document.getElementById('player-count').textContent = `(${players.length} / 12)`;
+  document.getElementById('chips').innerHTML = players.map((p, i) =>
+    `<span class="chip">${p}<button class="chip-remove" onclick="removePlayer(${i})" aria-label="remove ${p}">&times;</button></span>`
+  ).join('');
+}
+
+function pickPair() {
+  const cat = document.getElementById('cat-select').value;
+  const pool = cat === 'random' ? ALL_PAIRS : WORD_PAIRS[cat];
+  const available = pool.filter(p => !usedPairs.has(p.main));
+  const list = available.length > 0 ? available : pool;
+  const pair = list[Math.floor(rand() * list.length)];
+  usedPairs.add(pair.main);
+  if (usedPairs.size >= pool.length) usedPairs.clear();
+  return pair;
+}
+
+function startGame() {
+  if (players.length < 3) { showErr('setup-err', 'need at least 3 players'); return; }
+  seed = Date.now();
+  const pair = pickPair();
+  mainWord = pair.main;
+  imposterWord = pair.imposter;
+  imposterIdx = Math.floor(rand() * players.length);
+  currentDealIdx = 0;
+  selectedVote = null;
+  showScreen('deal');
+  renderDeal();
+}
+
+function renderDeal() {
+  const name = players[currentDealIdx];
+  document.getElementById('deal-heading').textContent = `${name}'s turn`;
+  const dots = document.getElementById('deal-dots');
+  dots.innerHTML = players.map((_, i) =>
+    `<div class="pdot ${i < currentDealIdx ? 'done' : i === currentDealIdx ? 'current' : ''}"></div>`
+  ).join('');
+  document.getElementById('tap-area').style.display = 'block';
+  document.getElementById('word-reveal').style.display = 'none';
+}
+
+function revealWord() {
+  const isImposter = currentDealIdx === imposterIdx;
+  const name = players[currentDealIdx];
+  document.getElementById('reveal-player-name').textContent = name;
+  const wordEl = document.getElementById('reveal-word-text');
+  const hintEl = document.getElementById('reveal-hint');
+  if (isImposter) {
+    wordEl.textContent = imposterWord;
+    wordEl.className = 'word-shown imposter-word';
+    hintEl.textContent = 'you are the imposter — bluff your way through!';
+  } else {
+    wordEl.textContent = mainWord;
+    wordEl.className = 'word-shown';
+    hintEl.textContent = 'memorise it, then pass the device face-down';
+  }
+  document.getElementById('tap-area').style.display = 'none';
+  document.getElementById('word-reveal').style.display = 'block';
+}
+
+function nextPlayer() {
+  currentDealIdx++;
+  if (currentDealIdx >= players.length) {
+    showScreen('discuss');
+    document.getElementById('topic-word').textContent = mainWord;
+  } else {
+    renderDeal();
+  }
+}
+
+function goVote() {
+  selectedVote = null;
+  showScreen('vote');
+  const grid = document.getElementById('vote-grid');
+  grid.innerHTML = players.map(p =>
+    `<button class="vote-btn" id="vbtn-${CSS.escape(p)}" onclick="selectVote('${p.replace(/'/g,"\\'")}')">
+      <div class="avatar">${initials(p)}</div>
+      ${p}
+    </button>`
+  ).join('');
+}
+
+function selectVote(name) {
+  if (selectedVote) {
+    const prev = document.getElementById('vbtn-' + CSS.escape(selectedVote));
+    if (prev) prev.classList.remove('selected');
+  }
+  selectedVote = name;
+  const el = document.getElementById('vbtn-' + CSS.escape(name));
+  if (el) el.classList.add('selected');
+  clearErr('vote-err');
+}
+
+function revealResult() {
+  if (!selectedVote) { showErr('vote-err', 'pick someone first'); return; }
+  const imposterName = players[imposterIdx];
+  const caught = selectedVote === imposterName;
+
+  if (caught) {
+    scores[imposterName] = (scores[imposterName] || 0);
+    players.forEach(p => {
+      if (p !== imposterName) scores[p] = (scores[p] || 0) + 1;
+    });
+  } else {
+    scores[imposterName] = (scores[imposterName] || 0) + 2;
+  }
+
+  showScreen('result');
+
+  const banner = document.getElementById('result-banner');
+  if (caught) {
+    banner.innerHTML = `<div class="result-banner caught">
+      <div class="result-icon">🎉</div>
+      <div class="result-title">imposter caught!</div>
+      <div class="result-desc">${imposterName} was the imposter.<br>Their word was "<strong>${imposterWord}</strong>" while everyone else had "<strong>${mainWord}</strong>".</div>
+    </div>`;
+  } else {
+    banner.innerHTML = `<div class="result-banner escaped">
+      <div class="result-icon">😈</div>
+      <div class="result-title">imposter escaped!</div>
+      <div class="result-desc">${imposterName} fooled you all!<br>Their word was "<strong>${imposterWord}</strong>" — you voted for <strong>${selectedVote}</strong> instead.</div>
+    </div>`;
+  }
+
+  const grid = document.getElementById('all-words-grid');
+  grid.innerHTML = players.map((p, i) => {
+    const isImp = i === imposterIdx;
+    return `<div class="word-chip ${isImp ? 'imposter' : 'regular'}">
+      <div class="wc-name">${p}</div>
+      <div class="wc-word">${isImp ? imposterWord : mainWord}</div>
+    </div>`;
+  }).join('');
+
+  renderScoreboard();
+}
+
+function renderScoreboard() {
+  const sb = document.getElementById('scoreboard');
+  if (!sb) return;
+  const sorted = [...players].sort((a, b) => (scores[b] || 0) - (scores[a] || 0));
+  const max = scores[sorted[0]] || 0;
+  sb.innerHTML = sorted.map(p =>
+    `<div class="score-row">
+      <span class="score-name">${p}</span>
+      <span class="score-val ${scores[p] === max && max > 0 ? 'high' : ''}">${scores[p] || 0} pts</span>
+    </div>`
+  ).join('');
+}
+
+function playAgain() {
+  seed = Date.now();
+  const pair = pickPair();
+  mainWord = pair.main;
+  imposterWord = pair.imposter;
+  imposterIdx = Math.floor(rand() * players.length);
+  currentDealIdx = 0;
+  selectedVote = null;
+  showScreen('deal');
+  renderDeal();
+}
+
+function newGame() {
+  players = [];
+  scores = {};
+  usedPairs.clear();
+  renderChips();
+  showScreen('setup');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showErr(id, msg) { document.getElementById(id).textContent = msg; }
+function clearErr(id) { document.getElementById(id).textContent = ''; }
+</script>
+</body>
+</html>
