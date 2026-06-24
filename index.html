@@ -249,6 +249,9 @@
 
   <!-- LOBBY -->
   <div id="s-lobby" class="screen">
+    <div style="text-align:right;margin-bottom:4px">
+      <button onclick="leaveRoom()" style="height:32px;padding:0 12px;font-size:12px;color:var(--muted)">leave room</button>
+    </div>
     <div class="bc">
       <p>room code</p>
       <div class="room-code-big" id="lobby-code"></div>
@@ -350,6 +353,14 @@
   function clrErr(id) { const e=document.getElementById(id); if(e) e.textContent=''; }
   function sorted(players) { return Object.values(players||{}).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
   function ls(k,v) { if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
+
+  function leaveRoom() {
+    if(gameRef) gameRef.off();
+    ['qi_room','qi_name','qi_key','qi_host'].forEach(k=>localStorage.removeItem(k));
+    roomCode=null; myName=null; myKey=null; isHost=false; lastStatus=null;
+    history.replaceState(null,'',location.pathname);
+    show('s-home');
+  }
 
   // ── HOME ──
   function createRoom() {
